@@ -1,0 +1,188 @@
+import 'package:chokchey_finance/components/header.dart';
+import 'package:chokchey_finance/localizations/appLocalizations.dart';
+import 'package:chokchey_finance/providers/groupLoan/index.dart';
+import 'package:chokchey_finance/screens/groupLoanApprove/tabGroupLoanApprove.dart';
+import 'package:chokchey_finance/utils/storages/colors.dart';
+import 'package:chokchey_finance/utils/storages/const.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../app/module/home_new/screen/new_homescreen.dart';
+
+// ignore: must_be_immutable
+class GroupLoanApprove extends StatefulWidget {
+  bool? isRefresh;
+  GroupLoanApprove({this.isRefresh = false});
+  @override
+  _GroupLoanApproveState createState() => _GroupLoanApproveState();
+}
+
+class _GroupLoanApproveState extends State<GroupLoanApprove> {
+  bool _isLoading = false;
+  dynamic listGroupLoanApprove;
+  // ignore: unused_field
+  static List<String>? items;
+  List<dynamic>? newDataList;
+
+  getListLoan(_pageSize, _pageNumber, status, code, bcode, sdate, edate) async {
+    setState(() {
+      _isLoading = true;
+    });
+    await Provider.of<GroupLoanProvider>(context)
+        .fetchGroupLoanAll(
+            _pageSize, _pageNumber, status, code, bcode, sdate, edate)
+        .then((value) {
+      setState(() {
+        _isLoading = false;
+        newDataList = value;
+      });
+    }).catchError((onError) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (mounted) {
+      getListLoan(20, 1, '', '', '', '', '');
+    }
+    super.didChangeDependencies();
+  }
+
+  void onLoading() async {
+    await new Future.delayed(new Duration(seconds: 3), () {
+      setState(() {
+        widget.isRefresh = false;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.isRefresh == true) {
+      onLoading();
+    }
+    return Provider<GroupLoanProvider>(
+      create: (context) => GroupLoanProvider(),
+      dispose: (context, value) => value.dispose(),
+      child: Header(
+        headerTexts: "group_loan_approve",
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => NewHomeScreen()
+                  // Home()
+                  ),
+              ModalRoute.withName("/Home")),
+        ),
+        bodys: Container(
+          padding: EdgeInsets.all(10),
+          child: widget.isRefresh == true
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: logolightGreen,
+                  ),
+                )
+              : _isLoading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      color: logolightGreen,
+                    ))
+                  : newDataList != null && newDataList!.length > 0
+                      ? Column(children: [
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: newDataList!.length,
+                                padding: const EdgeInsets.only(top: 20.0),
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    child: Card(
+                                        elevation: 5,
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      GroupLoanApproveDetail(
+                                                        groupLoanID:
+                                                            newDataList![index],
+                                                      )),
+                                            );
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Text(AppLocalizations.of(
+                                                                    context)!
+                                                                .translate(
+                                                                    'group_loan') ??
+                                                            'Group name: '),
+                                                        Text(
+                                                          ': ${newDataList![index]['gname']}',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  fontWeight700),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.all(2)),
+                                                    Row(
+                                                      children: [
+                                                        Text(AppLocalizations.of(
+                                                                    context)!
+                                                                .translate(
+                                                                    'create_by') ??
+                                                            'Create by: '),
+                                                        Text(
+                                                            ': ${newDataList![index]['user']['uname']}'),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.all(2)),
+                                                    Text(
+                                                        '${getDateTimeYMD(newDataList![index]['datecreate'])}'),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      '${newDataList![index]['status'] == "R" ? "Request" : ""}',
+                                                    ),
+                                                    Icon(
+                                                      Icons.arrow_forward_ios,
+                                                      color: logolightGreen,
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )),
+                                  );
+                                }),
+                            flex: 1,
+                          ),
+                        ])
+                      : Center(child: Text('No Group Loan')),
+        ),
+      ),
+    );
+  }
+}
