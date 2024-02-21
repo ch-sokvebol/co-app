@@ -397,13 +397,13 @@ class _LoginScreenNewState extends State<LoginScreenNew> {
             child: Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.1,
                 ),
                 Container(
                   child: Image.asset('assets/images/chokchey-logo.png'),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: MediaQuery.of(context).size.height * 0.1,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),

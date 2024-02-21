@@ -4,7 +4,6 @@ import 'package:chokchey_finance/app/utils/colors/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import '../../../../localizations/appLocalizations.dart';
 import '../../../../utils/storages/colors.dart';
 import '../../util/widget/custom_textfield.dart';
@@ -25,6 +24,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final con = Get.put(LoginController());
   final GlobalKey<ScaffoldState> _scaffoldKeySignUp =
       new GlobalKey<ScaffoldState>();
+
   Future<bool> _onBackPressed() async {
     AwesomeDialog(
         context: context,
@@ -63,7 +63,9 @@ class _LogInScreenState extends State<LogInScreen> {
               SizedBox(
                 height: 40,
               ),
-              Center(child: Image.asset('assets/images/chokchey-logo.png')),
+              Center(
+                child: Image.asset('assets/images/chokchey-logo.png'),
+              ),
               SizedBox(
                 height: 20,
               ),
@@ -108,17 +110,6 @@ class _LogInScreenState extends State<LogInScreen> {
                           labelText: AppLocalizations.of(context)!
                               .translate("password"),
                           focusNode: focusPassword,
-                          // suffixIcon: contro.passwordText.text != ''
-                          //     ? IconButton(
-                          //         onPressed: () {
-                          //           isSelected = !isSelected;
-                          //           contro.update();
-                          //           // con.refresh();
-                          //         },
-                          //         icon: isSelected == true
-                          //             ? Icon(Icons.visibility)
-                          //             : Icon(Icons.visibility_off))
-                          //     : null,
                         ),
                       ),
                     ],
@@ -128,9 +119,6 @@ class _LogInScreenState extends State<LogInScreen> {
               Spacer(),
               GetBuilder<LoginController>(
                   init: LoginController(),
-                  //                 initState: (state)async {
-                  // await
-                  //                 },
                   builder: (loginCon) {
                     return GestureDetector(
                       onTap: () {

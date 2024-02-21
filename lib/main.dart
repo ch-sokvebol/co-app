@@ -88,8 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
   // }
 
   // final newVersion = NewVersion(
-  //   iOSId: 'com.ccf.coapp',
-  //   androidId: 'com.ccf.coapp',
+  //   iOSId: 'com.ccf.co.app',
+  //   androidId: 'com.ccf.co.app',
   // );
 
   @override

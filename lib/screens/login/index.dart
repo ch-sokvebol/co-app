@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:chokchey_finance/app/utils/colors/app_color.dart';
 import 'package:chokchey_finance/app/utils/helpers/internet_connection.dart';
 import 'package:chokchey_finance/components/maxWidthWrapper.dart';
@@ -22,10 +21,6 @@ import '../../app/utils/helpers/sqlite_helper.dart';
 import '../../app/module/home_new/screen/new_homescreen.dart';
 
 class Login extends StatefulWidget {
-  // final ImageProvider chokchey;
-  // Login({
-  //   this.chokchey = const AssetImage('assets/images/chokchey-logo.png'),
-  // });
   _LoginState createState() => _LoginState();
 }
 
@@ -44,14 +39,6 @@ class _LoginState extends State<Login> {
   bool autofocus = false;
   final focusPassword = FocusNode();
   final focusFirstLogin = FocusNode();
-
-///////////command
-  // @override
-  // void didChangeDependencies() {
-  //   getStore();
-  //   chokchey = const AssetImage('assets/images/chokchey-logo.png');
-  //   super.didChangeDependencies();
-  // }
 
   Future<void> getStore() async {
     String? ids = await storage.read(key: 'user_id');
@@ -304,7 +291,6 @@ class _LoginState extends State<Login> {
         });
       }
     });
-    //////////////////////////////////
     super.initState();
   }
 
@@ -339,66 +325,6 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                    // Text(
-                    //   'Welcome',
-                    //   style: TextStyle(
-                    //     fontFamily: fontFamily,
-                    //     fontSize: fontSizeLg,
-                    //     color: logolightGreen,
-                    //     fontWeight: fontWeight700,
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: EdgeInsets.only(bottom: 5),
-                    // ),
-                    // Text(
-                    //   ' CHOKCHEY Finance',
-                    //   style: TextStyle(
-                    //     fontFamily: fontFamily,
-                    //     fontSize: fontSizeLg,
-                    //     color: logolightGreen,
-                    //     fontWeight: fontWeight700,
-                    //   ),
-                    // ),
-                    // Container(
-                    //   margin: EdgeInsets.only(top: 20),
-                    //   padding: EdgeInsets.only(left: 20, right: 20),
-                    //   child: TextFormField(
-                    //     // autofocus: true,
-                    //     controller: id,
-                    //     maxLength: 6,
-                    //     onChanged: (text) {
-                    //       logger().e(text);
-                    //       if (text.length == 6) {
-                    //         // FocusScope.of(context).requestFocus(focusPassword);
-                    //       }
-                    //     },
-                    //     textInputAction: TextInputAction.next,
-                    //     keyboardType: TextInputType.number,
-                    //     onFieldSubmitted: (text) {
-                    //       logger().e(text);
-
-                    //       if (text.length == 6) {
-                    //         // FocusScope.of(context).unfocus();
-                    //         // FocusScope.of(context).requestFocus(focusPassword);
-                    //       }
-                    //     },
-                    //     inputFormatters: <TextInputFormatter>[
-                    //       FilteringTextInputFormatter.digitsOnly
-                    //     ],
-                    //     decoration: InputDecoration(
-                    //       focusedBorder: UnderlineInputBorder(
-                    //         borderSide: BorderSide(color: logolightGreen),
-                    //       ),
-                    //       labelText: 'User ID',
-                    //       hintText: id.text,
-                    //       labelStyle: TextStyle(
-                    //         fontSize: 15,
-                    //         color: const Color(0xff0ABAB5),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     DefaultLogin(
                       onFieldSubmittedUser: (text) {
                         if (text.length == 6) {

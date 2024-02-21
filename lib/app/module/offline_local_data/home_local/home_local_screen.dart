@@ -33,15 +33,13 @@ class _HomeLocalScreenState extends State<HomeLocalScreen> {
     return Scaffold(
       appBar: CustomAppBar(
         context: context,
-        title: 'ChokChey CO',
+        title: 'Operation',
         centerTitle: true,
       ),
       // drawer: DrawerScreen(),
       body: Column(
         children: [
           CustomCardParLocal(),
-          // Text('${}'),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

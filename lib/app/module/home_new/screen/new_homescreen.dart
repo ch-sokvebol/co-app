@@ -355,7 +355,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
           backgroundColor: logolightGreen,
           title: GestureDetector(
             child: Text(
-              "ChokChey CO",
+              "Operation",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
