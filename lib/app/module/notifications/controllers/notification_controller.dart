@@ -29,7 +29,6 @@ class NotificationController extends GetxController {
     var userUcode = await storage.read(key: "user_ucode");
 
     final url = Uri.parse(baseURLInternal + "messages/byuser");
-    // final url = Uri.parse('https://localhost:5001/api/messages/byuser');
     final header = {
       "Content-Type": "application/json",
       "Authorization": "Bearer $token"
@@ -43,7 +42,6 @@ class NotificationController extends GetxController {
     try {
       if (res.statusCode == 200) {
         var resJson = json.decode(res.body);
-        // debugPrint('heloooo++++++:${allnotiModel.value.listMessages!.length}');
 
         allnotiList.clear();
         resJson.map((e) {
@@ -90,14 +88,11 @@ class NotificationController extends GetxController {
   final arrNotiList = <ArrearNotiModel>[].obs;
   Future<List<ArrearNotiModel>> getArrNoti(String empCode) async {
     isLoadingArrNoti.value = true;
-    // var token = await storage.read(key: 'user_token');
     final url =
         Uri.parse(baseURLInternal + "ArrNotifi/get_msg_collection/$empCode");
-    // final url = Uri.parse(
-    //     'https://localhost:5001/api/ArrNotifi/get_msg_collection/$empCode');
+
     final header = {
       "Content-Type": "application/json"
-      // "Authorization": "Bearer $token"
     };
     try {
       await http
@@ -108,7 +103,6 @@ class NotificationController extends GetxController {
           .then((res) {
         if (res.statusCode == 200) {
           var resJson = json.decode(res.body);
-          debugPrint("helooo:$resJson");
           arrNotiList.clear();
           resJson.map((e) {
             arrNotiModel.value = ArrearNotiModel.fromJson(e);
@@ -129,20 +123,17 @@ class NotificationController extends GetxController {
   final isLoadingNotiDetail = false.obs;
   final customerName = ''.obs;
   final message = RemoteMessage;
+
   Future<List<ArrearNotiModel>> getNotiDetail(int? id) async {
     try {
       isLoadingNotiDetail.value = true;
       final url =
           Uri.parse(baseURLInternal + 'ArrNotifi/msg_colletion_detail/$id');
-      // Uri.parse(
-      //     'https://localhost:5001/api/ArrNotifi/msg_colletion_detail/$id');
       final header = {"Content-Type": "application/json"};
       await http.get(url, headers: header).then((res) {
+
         if (res.statusCode == 200) {
           var resJson = json.decode(res.body);
-          debugPrint("ok==========:$resJson");
-          // customerName.value = resJson['customerName'];
-
           notiArrDetailList.clear();
 
           resJson.map((e) {
@@ -150,9 +141,6 @@ class NotificationController extends GetxController {
             notiArrDetailList.add(notiArrDetail.value);
           }).toList();
           // message.['customerName'] = resJson['customerName'];
-        } else {
-          // debugPrint('He;ooo===:${res.body}');
-          // debugPrint('He;ooo===:${res.statusCode}');
         }
       });
     } catch (e) {

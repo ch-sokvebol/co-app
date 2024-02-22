@@ -90,7 +90,7 @@ class _CardDetailLoanState extends State<CardDetailLoan> {
     }
   }
 
-  double _widtdButton = 100.0;
+  double _widtdButton = 105.0;
   double _heightButton = 33.0;
   double _borderRadius = 12.0;
   var userRoles;

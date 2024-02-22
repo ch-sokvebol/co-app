@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:chokchey_finance/components/ListDatial.dart';
 import 'package:chokchey_finance/localizations/appLocalizations.dart';
 import 'package:chokchey_finance/providers/loan/createLoan.dart';
@@ -12,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+
 // import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:photo_view/photo_view.dart';
@@ -20,6 +20,7 @@ import 'dart:io' as Io;
 
 class CardDetailLoanRegitration extends StatefulWidget {
   final dynamic lists;
+
   // var isRefresh;
 
   CardDetailLoanRegitration(
@@ -107,6 +108,7 @@ class _CardDetailLoanRegitrationState extends State<CardDetailLoanRegitration> {
   var _imageDocument;
 
   var futureLoanApproval;
+
   Future getImageDocument() async {
     setState(() {
       _isLoading = true;
@@ -151,6 +153,7 @@ class _CardDetailLoanRegitrationState extends State<CardDetailLoanRegitration> {
   // }
 
   File? imageFile;
+
   convertImagePath(image) async {
     switch (image['type']) {
       case '101':
@@ -356,6 +359,7 @@ class _CardDetailLoanRegitrationState extends State<CardDetailLoanRegitration> {
   }
 
   double? scaleCopy;
+
   @override
   Widget build(BuildContext context) {
     return _isLoading
@@ -369,11 +373,6 @@ class _CardDetailLoanRegitrationState extends State<CardDetailLoanRegitration> {
             ? SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.all(7),
-                  // margin: EdgeInsets.only(
-                  //     left: 10,
-                  //     top: 10,
-                  //     right: 10,
-                  //     bottom: isIphoneX(context) ? 20 : 15),
                   child: Card(
                       shape: RoundedRectangleBorder(
                         side: BorderSide(color: logolightGreen, width: 1),
@@ -473,60 +472,6 @@ class _CardDetailLoanRegitrationState extends State<CardDetailLoanRegitration> {
                                       name: 'status',
                                       value: '${detiaLoan['lstatus']}',
                                     ),
-                                    //
-                                    // if (_imageDocument != null &&
-                                    //     _imageDocument.length > 0)
-                                    //   Container(
-                                    //     width: 300,
-                                    //     height: 600,
-                                    //     padding: EdgeInsets.only(top: 10, left: 20),
-                                    //     child: GridView.count(
-                                    //       crossAxisCount: 1,
-                                    //       children: List.generate(
-                                    //           _imageDocument.length, (index) {
-                                    //         // File asset =
-                                    //         //     _imageDocument;
-                                    //         var uri =
-                                    //             _imageDocument[index]['filepath'];
-                                    //         Uint8List _bytes =
-                                    //             base64.decode(uri.split(',').last);
-                                    //         return Stack(children: <Widget>[
-                                    //           Container(
-                                    //               padding:
-                                    //                   EdgeInsets.only(bottom: 10),
-                                    //               child: Column(
-                                    //                 mainAxisAlignment:
-                                    //                     MainAxisAlignment.start,
-                                    //                 children: [
-                                    //                   if (_imageDocument != null)
-                                    //                     Text(
-                                    //                       _imageDocument[index]
-                                    //                           ["description"],
-                                    //                       style: mainTitleBlack,
-                                    //                     ),
-                                    //                   Padding(
-                                    //                       padding: EdgeInsets.only(
-                                    //                           bottom: 10)),
-                                    //                   if (_imageDocument != null)
-                                    //                     InkWell(
-                                    //                       onTap: () => {
-                                    //                         // convertImagePath(
-                                    //                         //     _imageDocument),
-                                    //                         // logger()
-                                    //                         //     .e('inkWell: ${_imageDocument}')
-                                    //                       },
-                                    //                       child: Image.memory(
-                                    //                         _bytes,
-                                    //                         height: 230,
-                                    //                         width: 300,
-                                    //                       ),
-                                    //                     ),
-                                    //                 ],
-                                    //               ))
-                                    //         ]);
-                                    //       }),
-                                    //     ),
-                                    //   ),
                                     if (_imageDocument != null)
                                       Container(
                                         width: widthView(context, 0.93),
@@ -592,246 +537,19 @@ class _CardDetailLoanRegitrationState extends State<CardDetailLoanRegitration> {
               )
             : Center(
                 child: Container(
-                    child: Text(
-                        AppLocalizations.of(context)!.translate('no_data') ??
-                            "No Data")));
-    // FutureBuilder<List<CreateLoan>>(
-    //     future: detiaLoan,
-    //     builder: (context, snapshot) {
-    //       var f = new NumberFormat("#,###.00", "en_US");
-    //       return snapshot.hasData
-    //           ? ListView.builder(
-    //               itemCount: snapshot.data!.length,
-    //               itemBuilder: (context, index) {
-    //                 return SingleChildScrollView(
-    //                   child: Container(
-    //                     margin: EdgeInsets.all(10),
-    //                     child: Card(
-    //                         shape: RoundedRectangleBorder(
-    //                           side: BorderSide(
-    //                               color: logolightGreen, width: 1),
-    //                           borderRadius: BorderRadius.circular(10),
-    //                         ),
-    //                         child: InkWell(
-    //                             splashColor: Colors.blue.withAlpha(30),
-    //                             child: Row(
-    //                                 mainAxisSize: MainAxisSize.max,
-    //                                 children: <Widget>[
-    //                                   Column(
-    //                                     crossAxisAlignment:
-    //                                         CrossAxisAlignment.start,
-    //                                     children: <Widget>[
-    //                                       ListDetail(
-    //                                         name: 'customer_khmer_name',
-    //                                         value:
-    //                                             '${snapshot.data![index].customer}',
-    //                                       ),
-
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'customer_id',
-    //                                         value:
-    //                                             '${snapshot.data![index].ccode}',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'loan_id',
-    //                                         value:
-    //                                             '${snapshot.data![index].lcode}',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'loan_amount',
-    //                                         value:
-    //                                             '\$ ${f.format(snapshot.data![index].lamt)}',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'currencies',
-    //                                         value:
-    //                                             '${snapshot.data![index].currency}',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'loan_product',
-    //                                         value:
-    //                                             '${snapshot.data![index].loanProduct}',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'number_of_term',
-    //                                         value:
-    //                                             '${snapshot.data![index].ints!.toInt()}',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'interest_rate',
-    //                                         value:
-    //                                             '${snapshot.data![index].intrate}%',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'maintenance_fee',
-    //                                         value:
-    //                                             '${snapshot.data![index].mfee}%',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'admin_fee',
-    //                                         value:
-    //                                             '${snapshot.data![index].afee}%',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'irr',
-    //                                         value:
-    //                                             '${numFormat.format(snapshot.data![index].irr).toString()}%',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'repayment_method',
-    //                                         value:
-    //                                             '${snapshot.data![index].rmode}',
-    //                                       ),
-    //                                       // //
-    //                                       ListDetail(
-    //                                         name: 'open_date',
-    //                                         value: getDateTimeYMD(snapshot
-    //                                                 .data![index].odate ??
-    //                                             DateTime.now().toString()),
-    //                                       ),
-
-    //                                       ListDetail(
-    //                                         name: 'maturity_date',
-    //                                         value: getDateTimeYMD(snapshot
-    //                                                 .data![index].mdate ??
-    //                                             DateTime.now().toString()),
-    //                                       ),
-
-    //                                       ListDetail(
-    //                                         name: 'first_repayment_date',
-    //                                         value: getDateTimeYMD(snapshot
-    //                                                 .data![index].firdate ??
-    //                                             DateTime.now().toString()),
-    //                                       ),
-
-    //                                       ListDetail(
-    //                                         name:
-    //                                             'generate_grace_period_number',
-    //                                         value:
-    //                                             '${snapshot.data![index].graperiod}',
-    //                                       ),
-    //                                       //
-    //                                       ListDetail(
-    //                                         name: 'loan_purpose',
-    //                                         value:
-    //                                             '${snapshot.data![index].lpourpose}',
-    //                                       ),
-    //                                       //
-    //                                       ListDetail(
-    //                                         name: 'LTV',
-    //                                         value:
-    //                                             '${snapshot.data![index].ltv}',
-    //                                       ),
-    //                                       //
-    //                                       ListDetail(
-    //                                         name: 'Dscr',
-    //                                         value:
-    //                                             '${snapshot.data![index].dscr}',
-    //                                       ),
-    //                                       //
-    //                                       ListDetail(
-    //                                         name: 'refer_by_who',
-    //                                         value:
-    //                                             '${snapshot.data![index].refby}',
-    //                                       ),
-    //                                       //
-    //                                       ListDetail(
-    //                                         name: 'status',
-    //                                         value:
-    //                                             '${snapshot.data![index].lstatus}',
-    //                                       ),
-    //                                       if (_imageDocument != null)
-    //                                         Container(
-    //                                           width: 300,
-    //                                           height: 600,
-    //                                           padding: EdgeInsets.only(
-    //                                               top: 10, left: 20),
-    //                                           child: GridView.count(
-    //                                             crossAxisCount: 1,
-    //                                             children: List.generate(
-    //                                                 _imageDocument != null
-    //                                                     ? _imageDocument
-    //                                                         .length
-    //                                                     : [], (index) {
-    //                                               // File asset =
-    //                                               //     _imageDocument[index];
-    //                                               var uri =
-    //                                                   _imageDocument[index]
-    //                                                       ['filepath'];
-    //                                               Uint8List _bytes =
-    //                                                   base64.decode(uri
-    //                                                       .split(',')
-    //                                                       .last);
-
-    //                                               return Stack(children: <
-    //                                                   Widget>[
-    //                                                 Container(
-    //                                                     padding:
-    //                                                         EdgeInsets.only(
-    //                                                             bottom: 10),
-    //                                                     child: Column(
-    //                                                       mainAxisAlignment:
-    //                                                           MainAxisAlignment
-    //                                                               .start,
-    //                                                       children: [
-    //                                                         Text(
-    //                                                           _imageDocument[
-    //                                                                   index]
-    //                                                               [
-    //                                                               'description'],
-    //                                                           style:
-    //                                                               mainTitleBlack,
-    //                                                         ),
-    //                                                         Padding(
-    //                                                             padding: EdgeInsets.only(
-    //                                                                 bottom:
-    //                                                                     10)),
-    //                                                         InkWell(
-    //                                                           onTap: () {
-    //                                                             // showImage(
-    //                                                             //     _imageDocument[index]);
-    //                                                           },
-    //                                                           child: Image
-    //                                                               .memory(
-    //                                                             _bytes,
-    //                                                             height: 230,
-    //                                                             width: 300,
-    //                                                           ),
-    //                                                         ),
-    //                                                       ],
-    //                                                     ))
-    //                                               ]);
-    //                                             }),
-    //                                           ),
-    //                                         ),
-    //                                       Padding(
-    //                                           padding: EdgeInsets.only(
-    //                                               bottom: 5)),
-    //                                     ],
-    //                                   ),
-    //                                 ]))),
-    //                   ),
-    //                 );
-    //               })
-    //           : Center(child: CircularProgressIndicator());
-    //     });
+                  child: Text(
+                      AppLocalizations.of(context)!.translate('no_data') ??
+                          "No Data"),
+                ),
+              );
   }
 }
 
 class ImageDialog extends StatelessWidget {
   final value;
+
   ImageDialog(this.value);
+
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
@@ -849,7 +567,9 @@ class ImageDialog extends StatelessWidget {
 
 class ImageDialogs extends StatelessWidget {
   final value;
+
   ImageDialogs(this.value);
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
