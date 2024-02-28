@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 import 'dart:ui';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:chokchey_finance/app/module/home_new/screen/drawer_screen.dart';
 import 'package:chokchey_finance/app/module/memo_policy/screen/memo_policy_screen.dart';
@@ -37,6 +38,7 @@ import 'dart:io' show Platform;
 
 import '../../notifications/Screens/main_notification.dart';
 import '../../policy/screen/policy_memo.dart';
+import '../../up_comming_feature/index.dart';
 import '../../util/widget/custom_category.dart';
 import '../custom/custom_card_par_new.dart';
 import '../custom/custom_defulf_arrear.dart';
@@ -83,6 +85,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   String release = "";
   SqliteHelper? sqliteHelper;
   int index = 0;
+
   onNavigateDetail() {
     notiCon.getNotiDetail(notiCon.notiArrDetail.value.id);
   }
@@ -221,6 +224,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   var totalUnread;
   var totalRead;
   var listMessages;
+
   getNotificationLock() async {
     try {
       await Provider.of<NotificationProvider>(context, listen: false)
@@ -274,7 +278,8 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   onCheckPar() async {
     final currentDate = DateTime.now();
     var date = DateFormat("yyyyMMdd").format(
-        DateTime(currentDate.year, currentDate.month, currentDate.day - 1));
+      DateTime(currentDate.year, currentDate.month, currentDate.day - 1),
+    );
     var type = await storage.read(key: 'user_type');
     var branchCode = await storage.read(key: 'branch');
     var empCode = await storage.read(key: 'user_ucode');
@@ -341,6 +346,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   }
 
   bool isViewPar = false;
+
   @override
   Widget build(BuildContext context) {
     final hightLines = MediaQuery.of(context).size.height * 0.16;
@@ -437,32 +443,61 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                     Obx(
                       () => GestureDetector(
                         onTap: () {
+                          onRefreshData();
                           if (con.isLoadingParArrHome.value == false) {
                             setState(() {
                               isViewPar = true;
                             });
                           }
                         },
-                        child: Container(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.only(left: 20, right: 20),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: con.isLoadingParArrHome.value == true
-                                ? Colors.grey.withOpacity(0.5)
-                                : logoDarkBlue,
-                          ),
-                          child: Center(
-                            child: Text(
-                              "View Arrear",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: fontWeight700),
-                            ),
-                          ),
-                        ),
+                        child: con.isLoadingParArrHome.value == true
+                            ? Container(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.only(left: 20, right: 20),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: logoDarkBlue,
+                                ),
+                                child: Center(
+                                  child: DefaultTextStyle(
+                                    style: const TextStyle(
+                                      fontSize: 20.0,
+                                    ),
+                                    child: AnimatedTextKit(
+                                      animatedTexts: [
+                                        WavyAnimatedText('Loading...',
+                                            textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                      ],
+                                      isRepeatingAnimation: true,
+                                      onTap: () {
+                                        print("Tap Event");
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Container(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.only(left: 20, right: 20),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: logoDarkBlue,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "View Arrears",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: fontWeight700),
+                                  ),
+                                ),
+                              ),
                       ),
                     ),
                     SizedBox(
@@ -537,24 +572,25 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Expanded(
-                            child: CustomCategory(
-                              ontap: () {
-                                onActivityLogDevice(
-                                  userId: userId,
-                                  description: "IRR",
-                                );
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => IRRScreen()),
-                                );
-                              },
-                              title: AppLocalizations.of(context)!
-                                  .translate('Irr'),
-                              icon: Icons.calculate,
-                            ),
-                          ),
+                          // Expanded(
+                          //   child: CustomCategory(
+                          //     ontap: () {
+                          //       onActivityLogDevice(
+                          //         userId: userId,
+                          //         description: "IRR",
+                          //       );
+                          //       Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //           builder: (context) => IRRScreen(),
+                          //         ),
+                          //       );
+                          //     },
+                          //     title: AppLocalizations.of(context)!
+                          //         .translate('Irr'),
+                          //     icon: Icons.calculate,
+                          //   ),
+                          // ),
                           Container(
                             height: hightLines,
                             width: 1.4,
@@ -598,7 +634,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                               },
                               title: AppLocalizations.of(context)!
                                       .translate('list_loan_approval') ??
-                                  'Laon Approval',
+                                  'Loan Approval',
                               icon: Icons.checklist,
                             ),
                           ),
@@ -766,12 +802,12 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => MemoPolicyScreen(),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UpcomingFeaturesScreen(),
+                    ),
+                  );
                 },
                 child: SvgPicture.asset(
                   'assets/svg/star.svg',

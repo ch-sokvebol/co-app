@@ -105,6 +105,7 @@ dependencies:
   in_app_update: ^4.1.4
   flutter_local_notifications: ^15.1.0+1
   syncfusion_flutter_core: ^23.2.7
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
 
@@ -166,6 +167,7 @@ flutter:
     - assets/images/227.png
     - assets/images/228.png
     - assets/images/chokchey-logo.png
+    - assets/up-coming.png
 
     - assets/images/301.png
     - assets/images/302.png

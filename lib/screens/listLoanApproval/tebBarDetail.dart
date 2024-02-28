@@ -493,7 +493,7 @@ class _CardDetailLoanState extends State<CardDetailLoan> {
                                     text: _isLoading
                                         ? 'loading'
                                         : AppLocalizations.of(context)!
-                                                .translate('Approve') ??
+                                                .translate('approved') ??
                                             'Approve'),
                               ],
                             )),

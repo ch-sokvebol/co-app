@@ -12,6 +12,7 @@ import 'loan_arrear_list_local.dart';
 
 class CustomCardParLocal extends StatefulWidget {
   final String? userId;
+
   CustomCardParLocal({super.key, this.userId});
 
   @override
@@ -21,6 +22,7 @@ class CustomCardParLocal extends StatefulWidget {
 class _CustomCardParLocalState extends State<CustomCardParLocal> {
   List<dynamic> arrearlist = [];
   SqliteHelper? sqliteHelper;
+
   Future<void> getData() async {
     setState(() {
       Future.delayed(Duration(seconds: 1), () async {
@@ -93,6 +95,7 @@ class _CustomCardParLocalState extends State<CustomCardParLocal> {
   }
 
   final controller = Get.put(LoanArrearController());
+
   @override
   void initState() {
     sqliteHelper = SqliteHelper();
@@ -191,281 +194,284 @@ class _CustomCardParLocalState extends State<CustomCardParLocal> {
             //     ],
             //   )
             // :
-            Table(
-              columnWidths: const <int, TableColumnWidth>{
-                0: FlexColumnWidth(),
-                // 1: IntrinsicColumnWidth(),
-                1: FlexColumnWidth(),
-                2: FlexColumnWidth(1.2),
-                3: FlexColumnWidth(1.5),
-                // 3: FlexColumnWidth(),
-              },
-              border: TableBorder.all(
-                  width: 1,
-                  color: logoDarkBlue,
-                  borderRadius: BorderRadius.circular(10)),
-              //table border
-              children: [
-                TableRow(children: [
-                  TableCell(
-                    child: Container(
-                      height: 30,
-                      alignment: Alignment.centerRight,
-                      child: onValueTitle('PAR', ''),
-                    ),
-                  ),
-                  TableCell(
-                    child: Container(
-                      height: 30,
-                      alignment: Alignment.centerRight,
-                      child: onValueTitle('', '%'),
-                    ),
-                  ),
-                  TableCell(
-                    child: Container(
-                      height: 30,
-                      alignment: Alignment.centerRight,
-                      child: onValueTitle('',
-                          '# ${AppLocalizations.of(context)!.translate('accounts')}'),
-                    ),
-                  ),
-                  TableCell(
-                    child: Container(
-                      height: 30,
-                      alignment: Alignment.centerRight,
-                      child: onValueTitle('',
-                          '${AppLocalizations.of(context)!.translate('amount')}'),
-                    ),
-                  ),
-                ]),
-                TableRow(children: [
-                  TableCell(
-                    child: SizedBox(
-                      height: 90,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoanArrearScreens(
-                                    isFromPar: true,
-                                    indexOfpage: 1,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: onValueRowPar("PAR>1", ''),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoanArrearScreens(
-                                    isFromPar: true,
-                                    indexOfpage: 2,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: onValueRowPar("PAR>14", ''),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoanArrearScreens(
-                                    isFromPar: true,
-                                    indexOfpage: 3,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: onValueRowPar("PAR>30", ''),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Container(
-                      height: 90,
-                      alignment: Alignment.centerRight,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          onValueTitle('',
-                              '${FormatConvert.formatCurrency(controller.radio1.value)}'),
-                          onValueTitle('',
-                              '${FormatConvert.formatCurrency(controller.radio14.value)}'),
-                          onValueTitle('',
-                              '${FormatConvert.formatCurrency(controller.radio30.value)}')
-                        ],
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: SizedBox(
-                      height: 90,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          onValueRowPar("",
-                              '${controller.acc1.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc1.value)}'),
-                          onValueRowPar("",
-                              '${controller.acc14.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc14.value)}'),
-                          onValueRowPar("",
-                              '${controller.acc30.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc30.value)}')
-                        ],
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                      child: SizedBox(
-                          height: 90,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              onValueRowPar("",
-                                  '${FormatConvert.formatCurrencyUSD(controller.amt1.value)}'),
-                              onValueRowPar("",
-                                  '${FormatConvert.formatCurrencyUSD(controller.amt14.value)}'),
-                              onValueRowPar("",
-                                  '${FormatConvert.formatCurrencyUSD(controller.amt30.value)}')
-                            ],
-                          ))),
-                ]),
-                TableRow(children: [
-                  TableCell(
-                    child: SizedBox(
-                      height: 60,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoanArrearScreens(
-                                    isFromPar: true,
-                                    indexOfpage: 4,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: onValueRowPar("PAR>60", ''),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoanArrearScreens(
-                                    isFromPar: true,
-                                    indexOfpage: 5,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: onValueRowPar("PAR>90", ''),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                    child: Container(
-                      height: 60,
-                      alignment: Alignment.centerRight,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          onValueTitle('',
-                              '${FormatConvert.formatCurrency(controller.radio60.value)}'),
-                          onValueTitle('',
-                              '${FormatConvert.formatCurrency(controller.radio90.value)}'),
-                          // onValueTitle('',
-                          //     '${FormatConvert.formatCurrency(controller.ratioPar30.value)}')
-                        ],
-                      ),
-                    ),
-                  ),
-                  TableCell(
-                      child: SizedBox(
-                    height: 60,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        onValueRowPar("",
-                            '${controller.acc60.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc60.value)}'),
-                        onValueRowPar("",
-                            '${controller.acc90.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc90.value)}'),
-                      ],
-                    ),
-                  )),
-                  TableCell(
-                    child: SizedBox(
-                      height: 60,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          onValueRowPar("",
-                              '${FormatConvert.formatCurrencyUSD(controller.amt60.value)}'),
-                          onValueRowPar("",
-                              '${FormatConvert.formatCurrencyUSD(controller.amt90.value)}'),
-                        ],
-                      ),
-                    ),
-                  ),
-                ]),
-                TableRow(
-                  children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Table(
+                columnWidths: const <int, TableColumnWidth>{
+                  0: FlexColumnWidth(),
+                  // 1: IntrinsicColumnWidth(),
+                  1: FlexColumnWidth(),
+                  2: FlexColumnWidth(1.2),
+                  3: FlexColumnWidth(1.5),
+                  // 3: FlexColumnWidth(),
+                },
+                border: TableBorder.all(
+                    width: 1,
+                    color: logoDarkBlue,
+                    borderRadius: BorderRadius.circular(10)),
+                //table border
+                children: [
+                  TableRow(children: [
                     TableCell(
                       child: Container(
                         height: 30,
                         alignment: Alignment.centerRight,
-                        child: onValueTitle('', 'Total'),
+                        child: onValueTitle('PAR', ''),
                       ),
                     ),
                     TableCell(
                       child: Container(
                         height: 30,
                         alignment: Alignment.centerRight,
-                        child: onValueTitle('', ''
-                            // '${FormatConvert.formatCurrency(controller.totalRaio.value)}'
+                        child: onValueTitle('', '%'),
+                      ),
+                    ),
+                    TableCell(
+                      child: Container(
+                        height: 30,
+                        alignment: Alignment.centerRight,
+                        child: onValueTitle('',
+                            '# ${AppLocalizations.of(context)!.translate('accounts')}'),
+                      ),
+                    ),
+                    TableCell(
+                      child: Container(
+                        height: 30,
+                        alignment: Alignment.centerRight,
+                        child: onValueTitle('',
+                            '${AppLocalizations.of(context)!.translate('amount')}'),
+                      ),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    TableCell(
+                      child: SizedBox(
+                        height: 90,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoanArrearScreens(
+                                      isFromPar: true,
+                                      indexOfpage: 1,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: onValueRowPar("PAR>1", ''),
                             ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoanArrearScreens(
+                                      isFromPar: true,
+                                      indexOfpage: 2,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: onValueRowPar("PAR>14", ''),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoanArrearScreens(
+                                      isFromPar: true,
+                                      indexOfpage: 3,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: onValueRowPar("PAR>30", ''),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     TableCell(
                       child: Container(
-                        height: 30,
+                        height: 90,
                         alignment: Alignment.centerRight,
-                        child: onValueTitle('',
-                            '${controller.totalAmt.value == 0 ? 0 : FormatConvert.formatdigit(controller.totalAcc.value)}'),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            onValueTitle('',
+                                '${FormatConvert.formatCurrency(controller.radio1.value)}'),
+                            onValueTitle('',
+                                '${FormatConvert.formatCurrency(controller.radio14.value)}'),
+                            onValueTitle('',
+                                '${FormatConvert.formatCurrency(controller.radio30.value)}')
+                          ],
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                      child: SizedBox(
+                        height: 90,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            onValueRowPar("",
+                                '${controller.acc1.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc1.value)}'),
+                            onValueRowPar("",
+                                '${controller.acc14.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc14.value)}'),
+                            onValueRowPar("",
+                                '${controller.acc30.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc30.value)}')
+                          ],
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                        child: SizedBox(
+                            height: 90,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                onValueRowPar("",
+                                    '${FormatConvert.formatCurrencyUSD(controller.amt1.value)}'),
+                                onValueRowPar("",
+                                    '${FormatConvert.formatCurrencyUSD(controller.amt14.value)}'),
+                                onValueRowPar("",
+                                    '${FormatConvert.formatCurrencyUSD(controller.amt30.value)}')
+                              ],
+                            ))),
+                  ]),
+                  TableRow(children: [
+                    TableCell(
+                      child: SizedBox(
+                        height: 60,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoanArrearScreens(
+                                      isFromPar: true,
+                                      indexOfpage: 4,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: onValueRowPar("PAR>60", ''),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoanArrearScreens(
+                                      isFromPar: true,
+                                      indexOfpage: 5,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: onValueRowPar("PAR>90", ''),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     TableCell(
                       child: Container(
-                        height: 30,
+                        height: 60,
                         alignment: Alignment.centerRight,
-                        child: onValueTitle('',
-                            '${FormatConvert.formatCurrencyUSD(controller.totalAmt.value)}'),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            onValueTitle('',
+                                '${FormatConvert.formatCurrency(controller.radio60.value)}'),
+                            onValueTitle('',
+                                '${FormatConvert.formatCurrency(controller.radio90.value)}'),
+                            // onValueTitle('',
+                            //     '${FormatConvert.formatCurrency(controller.ratioPar30.value)}')
+                          ],
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              ],
+                    TableCell(
+                        child: SizedBox(
+                      height: 60,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          onValueRowPar("",
+                              '${controller.acc60.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc60.value)}'),
+                          onValueRowPar("",
+                              '${controller.acc90.value == 0 ? 0 : FormatConvert.formatdigit(controller.acc90.value)}'),
+                        ],
+                      ),
+                    )),
+                    TableCell(
+                      child: SizedBox(
+                        height: 60,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            onValueRowPar("",
+                                '${FormatConvert.formatCurrencyUSD(controller.amt60.value)}'),
+                            onValueRowPar("",
+                                '${FormatConvert.formatCurrencyUSD(controller.amt90.value)}'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ]),
+                  TableRow(
+                    children: [
+                      TableCell(
+                        child: Container(
+                          height: 30,
+                          alignment: Alignment.centerRight,
+                          child: onValueTitle('', 'Total'),
+                        ),
+                      ),
+                      TableCell(
+                        child: Container(
+                          height: 30,
+                          alignment: Alignment.centerRight,
+                          child: onValueTitle('', ''
+                              // '${FormatConvert.formatCurrency(controller.totalRaio.value)}'
+                              ),
+                        ),
+                      ),
+                      TableCell(
+                        child: Container(
+                          height: 30,
+                          alignment: Alignment.centerRight,
+                          child: onValueTitle('',
+                              '${controller.totalAmt.value == 0 ? 0 : FormatConvert.formatdigit(controller.totalAcc.value)}'),
+                        ),
+                      ),
+                      TableCell(
+                        child: Container(
+                          height: 30,
+                          alignment: Alignment.centerRight,
+                          child: onValueTitle('',
+                              '${FormatConvert.formatCurrencyUSD(controller.totalAmt.value)}'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             // ),
             Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(10),
               child: Text(
-                '* Select on par number to go to par arrear detail',
+                '* Select on par number to go to par arrears detail',
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!

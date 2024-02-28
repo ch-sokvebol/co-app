@@ -2,7 +2,6 @@ import 'package:chokchey_finance/utils/storages/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../../../../utils/storages/const.dart';
 import '../../loan_arrear/controllers/loan_arrear_controller.dart';
 import '../custom/custom_card_par_new.dart';
@@ -67,7 +66,7 @@ class _ViewArrearScreenState extends State<ViewArrearScreen> {
         elevation: 0.2,
         centerTitle: true,
         title: Text(
-          "View Arrear",
+          "View Arrears",
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
