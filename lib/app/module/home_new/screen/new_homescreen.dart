@@ -5,7 +5,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:chokchey_finance/app/module/home_new/screen/drawer_screen.dart';
 import 'package:chokchey_finance/app/module/memo_policy/screen/memo_policy_screen.dart';
-
 import 'package:chokchey_finance/app/module/notifications/controllers/notification_controller.dart';
 import 'package:chokchey_finance/utils/storages/colors.dart';
 import 'package:chokchey_finance/utils/storages/const.dart';
@@ -572,25 +571,25 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          // Expanded(
-                          //   child: CustomCategory(
-                          //     ontap: () {
-                          //       onActivityLogDevice(
-                          //         userId: userId,
-                          //         description: "IRR",
-                          //       );
-                          //       Navigator.push(
-                          //         context,
-                          //         MaterialPageRoute(
-                          //           builder: (context) => IRRScreen(),
-                          //         ),
-                          //       );
-                          //     },
-                          //     title: AppLocalizations.of(context)!
-                          //         .translate('Irr'),
-                          //     icon: Icons.calculate,
-                          //   ),
-                          // ),
+                          Expanded(
+                            child: CustomCategory(
+                              ontap: () {
+                                onActivityLogDevice(
+                                  userId: userId,
+                                  description: "IRR",
+                                );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => IRRScreen(),
+                                  ),
+                                );
+                              },
+                              title: AppLocalizations.of(context)!
+                                  .translate('Irr'),
+                              icon: Icons.calculate,
+                            ),
+                          ),
                           Container(
                             height: hightLines,
                             width: 1.4,

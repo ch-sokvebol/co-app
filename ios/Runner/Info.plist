@@ -41,7 +41,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Need to access your camera to capture a photo add and update photo document requires loan.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Operation app doesn&apos;t require access to location when in the background.</string>
+	<string>Operation app doesn't require access to location when in the background.</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict>
 		<key>Location</key>

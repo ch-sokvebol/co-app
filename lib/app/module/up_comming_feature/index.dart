@@ -13,6 +13,15 @@ class UpcomingFeaturesScreen extends StatelessWidget {
     screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -21,8 +30,8 @@ class UpcomingFeaturesScreen extends StatelessWidget {
             child: Center(
               child: Image(
                 image: const AssetImage('assets/up-coming.png'),
-                width: screenWidth,
-                height: screenHeight / 2.5,
+                width: 250,
+                height: 250,
                 fit: BoxFit.cover,
               ),
             ),
@@ -60,10 +69,18 @@ class UpcomingFeaturesScreen extends StatelessWidget {
                     height: 16.0,
                   ),
                   _buildFeatureRow(
-                    title: 'Push Notifications',
+                    title: 'Offline Mode with Smart Sync',
                     subtitle:
-                    'Never miss an important update again with our new push notification feature',
-                    icon: FontAwesomeIcons.bell,
+                    ' Access crucial app functions and content offline. Smart sync keeps data updated in the background, ensuring seamless productivity without internet.',
+                    icon: FontAwesomeIcons.wifi,
+                  ),  const SizedBox(
+                    height: 16.0,
+                  ),
+                  _buildFeatureRow(
+                    title: 'Multi-Platform Collaboration',
+                    subtitle:
+                    'Collaborate across devices effortlessly. Real-time syncing and communication tools enable efficient teamwork regardless of device or location',
+                    icon: FontAwesomeIcons.share,
                   ),
                 ],
               ),

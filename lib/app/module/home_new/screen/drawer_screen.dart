@@ -1,5 +1,6 @@
 // ignore_for_file: dead_code, unused_element
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:chokchey_finance/app/module/log/controller/log_controller.dart';
 import 'package:chokchey_finance/app/module/log/controller/par_controller.dart';
 import 'package:expandable/expandable.dart';
@@ -72,16 +73,33 @@ class _DrawerScreenState extends State<DrawerScreen> {
   }
 
   onLogOut() async {
-    await LocalDatabase.instance.removeOldOfflineUser();
-    await storage.deleteAll();
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-              //Login(),
-              LoginScreenNew(),
-        ),
-        ModalRoute.withName("/login"));
+    AwesomeDialog(
+        context: context,
+        headerAnimationLoop: false,
+        dialogType: DialogType.INFO,
+        title: AppLocalizations.of(context)!.translate('logout') ??
+            'Logout',
+        desc: AppLocalizations.of(context)!.translate('confirm_dialog_logout') ??
+            'Are you sure you want to logout?',
+        btnOkOnPress: () async {
+          await LocalDatabase.instance.removeOldOfflineUser();
+          await storage.deleteAll();
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                //Login(),
+                LoginScreenNew(),
+              ),
+              ModalRoute.withName("/login"));
+        },
+        btnCancelText: AppLocalizations.of(context)!.translate('no') ?? "No",
+        btnCancelOnPress: () {},
+        btnCancelIcon: Icons.close,
+        btnOkIcon: Icons.check_circle,
+        btnOkColor: logolightGreen,
+        btnOkText: AppLocalizations.of(context)!.translate('ok') ?? 'OK')
+      ..show();
   }
 
   String userId = '';
@@ -570,7 +588,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       child: Column(
                         children: [
                           Text(
-                            "${AppLocalizations.of(context)!.translate('log_out') ?? 'Log Out'}",
+                            "${AppLocalizations.of(context)!.translate('log_out') ?? 'Logout'}",
                             style: TextStyle(
                               fontSize: 16,
                               color: logoDarkBlue,
