@@ -86,7 +86,7 @@ import 'package:http/http.dart' as http;
 //         return Scaffold(
 //           appBar: CustomAppBar(
 //             context: context,
-//             title: "Loan Arrear Follow Up",
+//             title: "Loan Arrears Follow Up",
 //             centerTitle: true,
 //           ),
 //           body: Obx(
@@ -900,7 +900,7 @@ class _LocalDataScreenState extends State<LocalDataScreen> {
   onGetLocal() async {
 // if(sqliteHelper.database.)
     // sqliteHelper!.onCreateTable();
-    // await sqliteHelper!.onDropTable("Arrear");
+    // await sqliteHelper!.onDropTable("Arrears");
 
     // await sqliteHelper!.runQuery(
     //     'INSERT INTO User(id, name, age, gender) VALUES (1, "yTest", "14", "female")');

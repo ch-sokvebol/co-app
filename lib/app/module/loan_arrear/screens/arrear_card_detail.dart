@@ -84,7 +84,7 @@ class ArrearCardDetail extends StatelessWidget {
       appBar: CustomAppBar(
         context: context,
         title:
-            '${AppLocalizations.of(context)!.translate('arrear_detail') ?? 'Loan Arrear Detail'}',
+            '${AppLocalizations.of(context)!.translate('arrear_detail') ?? 'Loan Arrears Detail'}',
         centerTitle: true,
       ),
       body: Column(

@@ -45,7 +45,7 @@ class _AllParScreenState extends State<AllParScreen> {
                     padding: EdgeInsets.symmetric(vertical: 80),
                     children: [
                       Text(
-                        'No Arrear',
+                        'No Arrears',
                         style: Theme.of(context).textTheme.titleMedium,
                         textAlign: TextAlign.center,
                       ),
@@ -141,7 +141,7 @@ class _AllParScreenState extends State<AllParScreen> {
                               onActivityLogDevice(
                                 userId: _con.modelNew.value.allArrear![index]
                                     .refereneceEmployeeNo,
-                                description: "Loan Arrear Follow up par all",
+                                description: "Loan Arrears Follow up par all",
                               );
                             },
                             onTapCard: () {
@@ -222,7 +222,7 @@ class _AllParScreenState extends State<AllParScreen> {
                               onActivityLogDevice(
                                 userId: _con.modelNew.value.allArrear![index]
                                     .employeeName,
-                                description: "Loan Arrear Detail Par all",
+                                description: "Loan Arrears Detail Par all",
                               );
                             },
                           ),

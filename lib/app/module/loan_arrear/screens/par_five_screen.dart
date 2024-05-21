@@ -66,7 +66,7 @@ class ParFiveScreen extends StatelessWidget {
               await _con.onCheckPar();
             },
             child: _con.modelNew.value.arrear90Days!.isEmpty
-                ? Center(child: Text('No Arrear'))
+                ? Center(child: Text('No Arrears'))
                 : ListView.builder(
                     itemCount: _con.modelNew.value.arrear90Days!.length,
                     itemBuilder: (context, index) {
@@ -140,7 +140,7 @@ class ParFiveScreen extends StatelessWidget {
                           onActivityLogDevice(
                             userId: _con.modelNew.value.arrear90Days![index]
                                 .refereneceEmployeeNo,
-                            description: "Loan Arrear Follow up par all",
+                            description: "Loan Arrears Follow up par all",
                           );
                         },
                         onTabHistory: () {
@@ -236,7 +236,7 @@ class ParFiveScreen extends StatelessWidget {
                           onActivityLogDevice(
                             userId: _con.modelNew.value.arrear90Days![index]
                                 .employeeName,
-                            description: "Loan Arrear Detail Par all",
+                            description: "Loan Arrears Detail Par all",
                           );
                         },
                       );

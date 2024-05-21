@@ -137,7 +137,7 @@ class _CustomCardParLocalState extends State<CustomCardParLocal> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Arrear',
+                  'Arrears',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
@@ -154,7 +154,7 @@ class _CustomCardParLocalState extends State<CustomCardParLocal> {
                       );
                       onActivityLogDevice(
                           userId: '${widget.userId}',
-                          description: 'Loan Arrear');
+                          description: 'Loan Arrears');
                     });
                   },
                   child: Container(
@@ -517,7 +517,7 @@ class _CustomCardParLocalState extends State<CustomCardParLocal> {
     //               );
     //             },
     //             child: Text(
-    //               'Arrear',
+    //               'Arrears',
     //               style: TextStyle(
     //                 fontSize: 20,
     //                 fontWeight: FontWeight.w800,
@@ -533,7 +533,7 @@ class _CustomCardParLocalState extends State<CustomCardParLocal> {
     //                     builder: (context) => LoanArrearScreens()),
     //               );
     //               onActivityLogDevice(
-    //                   userId: '${widget.userId}', description: 'Loan Arrear');
+    //                   userId: '${widget.userId}', description: 'Loan Arrears');
     //             },
     //             child: Container(
     //               height: 30,

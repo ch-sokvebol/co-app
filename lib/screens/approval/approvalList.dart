@@ -132,6 +132,7 @@ class _ApprovalListsState extends State<ApprovalLists>
     try {
       final storage = new FlutterSecureStorage();
       String? user_id = await storage.read(key: 'user_id');
+      print(user_id);
       var headers = {'Content-Type': 'application/json'};
       var request = http.Request('POST', Uri.parse(baseUrl + 'LRA0002'));
       request.body =
@@ -139,6 +140,7 @@ class _ApprovalListsState extends State<ApprovalLists>
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
+      print(request.body);
       if (response.statusCode == 200) {
         var list = jsonDecode(await response.stream.bytesToString());
         setState(() {

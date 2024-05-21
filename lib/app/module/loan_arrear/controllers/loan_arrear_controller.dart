@@ -289,10 +289,7 @@ class LoanArrearController extends GetxController {
 
           update();
         } else {
-          // debugPrint('error==+++++++statuscode');
         }
-
-        // var resJson = jsonDecode(res.body)['body']['arrearList'];
       });
     } catch (e) {
       isLoadingFilter = false;
@@ -338,23 +335,23 @@ class LoanArrearController extends GetxController {
   final totalUSDAll = 0.0.obs;
   final totalKHMAll = 0.0.obs;
   final totalAmountAll = 0.0.obs;
-  // Arrear 1
+  // Arrears 1
   final totalAmount1 = 0.0.obs;
   final totalUSD1 = 0.0.obs;
   final totalKHM1 = 0.0.obs;
-  // Arrear 2
+  // Arrears 2
   final totalAmount2 = 0.0.obs;
   final totalUSD2 = 0.0.obs;
   final totalKHM2 = 0.0.obs;
-  // Arrear 3
+  // Arrears 3
   final totalAmount3 = 0.0.obs;
   final totalUSD3 = 0.0.obs;
   final totalKHM3 = 0.0.obs;
-  // Arrear 4
+  // Arrears 4
   final totalAmount4 = 0.0.obs;
   final totalUSD4 = 0.0.obs;
   final totalKHM4 = 0.0.obs;
-  // Arrear 5
+  // Arrears 5
   final totalAmount5 = 0.0.obs;
   final totalUSD5 = 0.0.obs;
   final totalKHM5 = 0.0.obs;
@@ -627,7 +624,7 @@ class LoanArrearController extends GetxController {
       final res = await http.post(Uri.parse(url), headers: header, body: body);
       if (res.statusCode == 200) {
         var resJson = json.decode(res.body);
-        // debugPrint('body Arrear: ${res.body}');
+        // debugPrint('body Arrears: ${res.body}');
         parArrHomeModel.value = ParArrHomeModel.fromJson(resJson);
       }
       isLoadingParArrHome.value = false;

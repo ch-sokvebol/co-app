@@ -22,6 +22,7 @@ import '../../../../screens/customerRegister/customerRegister.dart';
 import '../../../../screens/irr/index.dart';
 import '../../../../screens/lMap/index.dart';
 import '../../../../screens/loanRegistration/loanRegistration.dart';
+import '../../../../utils/storages/responsive.dart';
 import '../../../utils/helpers/activity_log.dart';
 import '../../../utils/helpers/sqlite_helper.dart';
 import '../../loan_arrear/controllers/loan_arrear_controller.dart';
@@ -51,6 +52,9 @@ class NewHomeScreen extends StatefulWidget {
 }
 
 class _NewHomeScreenState extends State<NewHomeScreen> {
+  double screenWidth = 0.0;
+  double screenHeight = 0.0;
+
   onChngaeLang(String? enLang) async {
     await storage.write(key: 'lang_code', value: '$enLang');
     if (enLang == 'en_US') {
@@ -195,7 +199,6 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
       (value) {
         controllerArrear.userName.value = value!.uname;
         controllerArrear.userId.value = value.userId;
-
         setState(
           () {},
         );
@@ -252,9 +255,10 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   Future<bool> _onBackPressed() async {
     AwesomeDialog(
         context: context,
-        // animType: AnimType.LEFTSLIDE,
+        width: Responsive.isMobile(context) ? screenWidth : screenWidth / 2,
         headerAnimationLoop: false,
         dialogType: DialogType.INFO,
+        transitionAnimationDuration: const Duration(milliseconds: 1000),
         title: AppLocalizations.of(context)!.translate('information') ??
             'Information',
         desc: AppLocalizations.of(context)!.translate('do_you_want_to_exit') ??
@@ -279,6 +283,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
     var date = DateFormat("yyyyMMdd").format(
       DateTime(currentDate.year, currentDate.month, currentDate.day - 1),
     );
+    print("Base Date : ${date}");
     var type = await storage.read(key: 'user_type');
     var branchCode = await storage.read(key: 'branch');
     var empCode = await storage.read(key: 'user_ucode');
@@ -348,6 +353,8 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
     final hightLines = MediaQuery.of(context).size.height * 0.16;
     return WillPopScope(
       onWillPop: _onBackPressed,
@@ -463,18 +470,34 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                     style: const TextStyle(
                                       fontSize: 20.0,
                                     ),
-                                    child: AnimatedTextKit(
-                                      animatedTexts: [
-                                        WavyAnimatedText('Loading...',
-                                            textStyle: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                            )),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Loading',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        SizedBox(width: 5.0),
+                                        AnimatedTextKit(
+                                          animatedTexts: [
+                                            WavyAnimatedText(
+                                              '...',
+                                              textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 24.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                          isRepeatingAnimation: true,
+                                          onTap: () {
+                                            print("Tap Event");
+                                          },
+                                        ),
                                       ],
-                                      isRepeatingAnimation: true,
-                                      onTap: () {
-                                        print("Tap Event");
-                                      },
                                     ),
                                   ),
                                 ),

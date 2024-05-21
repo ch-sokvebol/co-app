@@ -98,7 +98,7 @@ class CustomCardPar extends StatelessWidget {
                     left: 10,
                   ),
                   child: Text(
-                    "Arrear",
+                    "Arrears",
                     style: TextStyle(
                       fontSize: 20,
                       color: logoDarkBlue,

@@ -270,7 +270,7 @@ class _LoanArrearScreenState extends State<LoanArrearScreen> {
               iconTheme: const IconThemeData(color: Colors.white),
               title: Text(
                 AppLocalizations.of(context)!.translate('loan_arrear') ??
-                    'Loan Arrear',
+                    'Loan Arrears',
               ),
               backgroundColor: logolightGreen,
               leading: new IconButton(

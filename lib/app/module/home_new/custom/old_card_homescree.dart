@@ -15,7 +15,7 @@
   //                           Text(
   //                             AppLocalizations.of(context)!
   //                                     .translate('loan_arrear') ??
-  //                                 'Loan Arrear',
+  //                                 'Loan Arrears',
   //                             style: TextStyle(
   //                               fontSize: 20,
   //                               color: logoDarkBlue,

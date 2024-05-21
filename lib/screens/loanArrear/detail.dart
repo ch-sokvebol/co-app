@@ -56,7 +56,7 @@ class _DetailLoanArrearState extends State<DetailLoanArrear> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        title: Text("Detail Loan Arrear"),
+        title: Text("Detail Loan Arrears"),
         backgroundColor: logolightGreen,
       ),
       body: _isLoading

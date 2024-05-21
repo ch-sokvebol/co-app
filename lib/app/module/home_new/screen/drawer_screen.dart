@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
+import '../../../../utils/storages/responsive.dart';
 import '../../log/screen/login_screen.dart';
 import '../../../utils/helpers/internet_connection.dart';
 import '../../../utils/helpers/local_database.dart';
@@ -39,6 +40,9 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
+  double screenWidth = 0.0;
+  double screenHeight = 0.0;
+
   @override
   void initState() {
     storage.read(key: 'lang_code').then((lang) {
@@ -64,6 +68,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   }
 
   String version = "1.2.0";
+
   fetchVersionApp() async {
     PackageInfo.fromPlatform().then(
       (PackageInfo packageInfo) {
@@ -74,13 +79,15 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
   onLogOut() async {
     AwesomeDialog(
+        width: Responsive.isMobile(context) ? screenWidth : screenWidth / 2,
         context: context,
         headerAnimationLoop: false,
         dialogType: DialogType.INFO,
-        title: AppLocalizations.of(context)!.translate('logout') ??
-            'Logout',
-        desc: AppLocalizations.of(context)!.translate('confirm_dialog_logout') ??
-            'Are you sure you want to logout?',
+        transitionAnimationDuration: const Duration(milliseconds: 1000),
+        title: AppLocalizations.of(context)!.translate('logout') ?? 'Logout',
+        desc:
+            AppLocalizations.of(context)!.translate('confirm_dialog_logout') ??
+                'Are you sure you want to logout?',
         btnOkOnPress: () async {
           await LocalDatabase.instance.removeOldOfflineUser();
           await storage.deleteAll();
@@ -88,8 +95,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                //Login(),
-                LoginScreenNew(),
+                    //Login(),
+                    LoginScreenNew(),
               ),
               ModalRoute.withName("/login"));
         },
@@ -115,6 +122,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   final english = const AssetImage('assets/images/english.png');
   final khmer = const AssetImage('assets/images/khmer.png');
   ExpandableController? _expandableController;
+
   // _expandableController = ExpandableController();
 
   onListReport() {
@@ -178,8 +186,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
   final controllerLog = Get.put(LogController());
   final userCon = Get.put(ConnenctivityApp());
   final controler = Get.put(ParController());
+
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
+
     _expandableController = ExpandableController();
     String versionString =
         baseURLInternal == "http://119.82.252.42:2020/api/" ? "v" : "version";
@@ -280,7 +292,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       //============>
                       // CustomListTile(
                       //     Icons.notification_add,
-                      //     "Notification Loan Arrear",
+                      //     "Notification Loan Arrears",
                       //     () => {onPushNotificationLoanArrear()},
                       //     null),
                       // CustomListTile(

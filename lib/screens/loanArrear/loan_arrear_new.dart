@@ -13,7 +13,7 @@ class LoanArrearNew extends StatelessWidget {
         elevation: 0.4,
         backgroundColor: logolightGreen,
         title: Text(
-          'Laon Arrear',
+          'Laon Arrears',
           style: TextStyle(
             fontSize: 20,
             color: Colors.white,

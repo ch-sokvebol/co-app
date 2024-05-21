@@ -1,8 +1,10 @@
 import 'package:chokchey_finance/app/module/loan_arrear/controllers/loan_arrear_controller.dart';
 import 'package:chokchey_finance/app/module/loan_arrear/models/par_arr_home_model.dart';
 import 'package:chokchey_finance/utils/storages/colors.dart';
+import 'package:chokchey_finance/utils/storages/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../localizations/appLocalizations.dart';
 import '../../../utils/helpers/activity_log.dart';
@@ -10,7 +12,7 @@ import '../../../utils/helpers/format_convert.dart';
 import '../../loan_arrear/screens/loan_arrear_screen.dart';
 import 'custom_defulf_arrear.dart';
 
-class CustomCardParNew extends StatelessWidget {
+class CustomCardParNew extends StatefulWidget {
   final ParArrHomeModel parArrHomeModel;
   final String? userId;
   final GestureTapCallback? onNavigat;
@@ -18,6 +20,11 @@ class CustomCardParNew extends StatelessWidget {
   CustomCardParNew(
       {super.key, this.userId, this.onNavigat, required this.parArrHomeModel});
 
+  @override
+  State<CustomCardParNew> createState() => _CustomCardParNewState();
+}
+
+class _CustomCardParNewState extends State<CustomCardParNew> {
   onValueRowPar(String? par, String? ratio) {
     return Container(
       child: Padding(
@@ -76,6 +83,16 @@ class CustomCardParNew extends StatelessWidget {
 
   final controller = Get.put(LoanArrearController());
 
+  String formattedDate = '';
+
+  @override
+  void initState() {
+    super.initState();
+    DateTime now = DateTime.now();
+    DateTime yesterday = now.subtract(Duration(days: 1));
+    formattedDate = DateFormat('dd-MMM-yyyy').format(yesterday);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -107,12 +124,11 @@ class CustomCardParNew extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: onNavigat,
+                        onTap: widget.onNavigat,
                         child: Padding(
-                          padding:
-                              EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                          padding: EdgeInsets.only(left: 10, right: 10),
                           child: Text(
-                            'Arrear',
+                            'Arrears',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
@@ -129,7 +145,8 @@ class CustomCardParNew extends StatelessWidget {
                                 builder: (context) => LoanArrearScreens()),
                           );
                           onActivityLogDevice(
-                              userId: '${userId}', description: 'Loan Arrear');
+                              userId: '${widget.userId}',
+                              description: 'Loan Arrears');
                         },
                         child: Container(
                           height: 30,
@@ -157,11 +174,14 @@ class CustomCardParNew extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 6),
-                  // Obx(
-                  //   () => controller.isLoadingParArrHome.value
-                  //       ? CustomDefulfArrear()
-                  //       :
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      "As of date: $formattedDate",
+                      style:
+                          TextStyle(color: logoPink, fontWeight: fontWeight500),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: Table(
@@ -275,11 +295,11 @@ class CustomCardParNew extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   onValueTitle('',
-                                      '${FormatConvert.formatAmountUSD(parArrHomeModel.percentagePar1 ?? 0)}'),
+                                      '${FormatConvert.formatAmountUSD(widget.parArrHomeModel.percentagePar1 ?? 0)}'),
                                   onValueTitle('',
-                                      '${FormatConvert.formatAmountUSD(parArrHomeModel.percentagePar14 ?? 0)}'),
+                                      '${FormatConvert.formatAmountUSD(widget.parArrHomeModel.percentagePar14 ?? 0)}'),
                                   onValueTitle('',
-                                      '${FormatConvert.formatAmountUSD(parArrHomeModel.percentagePar30 ?? 0)}')
+                                      '${FormatConvert.formatAmountUSD(widget.parArrHomeModel.percentagePar30 ?? 0)}')
                                 ],
                               ),
                             ),
@@ -292,11 +312,11 @@ class CustomCardParNew extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   onValueRowPar("",
-                                      '${FormatConvert.formatCurrencyUSD(parArrHomeModel.accPar1 ?? 0)}'),
+                                      '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.accPar1 ?? 0)}'),
                                   onValueRowPar("",
-                                      '${FormatConvert.formatCurrencyUSD(parArrHomeModel.accPar14 ?? 0)}'),
+                                      '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.accPar14 ?? 0)}'),
                                   onValueRowPar("",
-                                      '${FormatConvert.formatCurrencyUSD(parArrHomeModel.accPar30 ?? 0)}')
+                                      '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.accPar30 ?? 0)}')
                                 ],
                               ),
                             ),
@@ -309,11 +329,11 @@ class CustomCardParNew extends StatelessWidget {
                                         MainAxisAlignment.spaceAround,
                                     children: [
                                       onValueRowPar("",
-                                          '${FormatConvert.formatCurrencyUSD(parArrHomeModel.amountPar1 ?? 0)}'),
+                                          '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.amountPar1 ?? 0)}'),
                                       onValueRowPar("",
-                                          '${FormatConvert.formatCurrencyUSD(parArrHomeModel.amountPar14 ?? 0)}'),
+                                          '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.amountPar14 ?? 0)}'),
                                       onValueRowPar("",
-                                          '${FormatConvert.formatCurrencyUSD(parArrHomeModel.amountPar30 ?? 0)}')
+                                          '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.amountPar30 ?? 0)}')
                                     ],
                                   ))),
                         ]),
@@ -368,9 +388,9 @@ class CustomCardParNew extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   onValueTitle('',
-                                      '${FormatConvert.formatAmountUSD(parArrHomeModel.percentagePar60 ?? 0)}'),
+                                      '${FormatConvert.formatAmountUSD(widget.parArrHomeModel.percentagePar60 ?? 0)}'),
                                   onValueTitle('',
-                                      '${FormatConvert.formatAmountUSD(parArrHomeModel.percentagePar90 ?? 0)}'),
+                                      '${FormatConvert.formatAmountUSD(widget.parArrHomeModel.percentagePar90 ?? 0)}'),
                                   // onValueTitle('',
                                   //     '${FormatConvert.formatCurrency(controller.ratioPar30.value)}')
                                 ],
@@ -384,9 +404,9 @@ class CustomCardParNew extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 onValueRowPar("",
-                                    '${FormatConvert.formatCurrencyUSD(parArrHomeModel.accPar60 ?? 0)}'),
+                                    '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.accPar60 ?? 0)}'),
                                 onValueRowPar("",
-                                    '${FormatConvert.formatCurrencyUSD(parArrHomeModel.accPar90 ?? 0)}'),
+                                    '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.accPar90 ?? 0)}'),
                               ],
                             ),
                           )),
@@ -398,9 +418,9 @@ class CustomCardParNew extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   onValueRowPar("",
-                                      '${FormatConvert.formatCurrencyUSD(parArrHomeModel.amountPar60 ?? 0)}'),
+                                      '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.amountPar60 ?? 0)}'),
                                   onValueRowPar("",
-                                      '${FormatConvert.formatCurrencyUSD(parArrHomeModel.amountPar90 ?? 0)}'),
+                                      '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.amountPar90 ?? 0)}'),
                                 ],
                               ),
                             ),
@@ -430,7 +450,7 @@ class CustomCardParNew extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 child: onValueTitle(
                                   '',
-                                  '${FormatConvert.formatCurrencyUSD(parArrHomeModel.totalAccount ?? 0)}',
+                                  '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.totalAccount ?? 0)}',
                                 ),
                               ),
                             ),
@@ -439,7 +459,7 @@ class CustomCardParNew extends StatelessWidget {
                                 height: 30,
                                 alignment: Alignment.centerRight,
                                 child: onValueTitle('',
-                                    '${FormatConvert.formatCurrencyUSD(parArrHomeModel.totalAmount ?? 0)}'),
+                                    '${FormatConvert.formatCurrencyUSD(widget.parArrHomeModel.totalAmount ?? 0)}'),
                               ),
                             ),
                           ],

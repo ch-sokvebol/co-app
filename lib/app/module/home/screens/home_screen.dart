@@ -280,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: <Widget>[
                         CustomListTile(
                             Icons.notification_add,
-                            "Notification Loan Arrear",
+                            "Notification Loan Arrears",
                             () => {onPushNotificationLoanArrear()},
                             null),
                         CustomListTile(

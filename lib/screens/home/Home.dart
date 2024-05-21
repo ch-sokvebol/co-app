@@ -1084,7 +1084,7 @@ class _HomeState extends State<Home> {
             onTap: () {
               onActivityLogDevice(
                 userId: userId,
-                description: "Loan Arrear",
+                description: "Loan Arrears",
               );
               Navigator.push(
                   context,

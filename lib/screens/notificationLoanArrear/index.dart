@@ -108,7 +108,7 @@ class _PushNotificationLoanLoanArrearState
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: logolightGreen,
-        title: Text("Notification Loan Arrear"),
+        title: Text("Notification Loan Arrears"),
       ),
       body: isLoading
           ? Center(
@@ -133,7 +133,7 @@ class _PushNotificationLoanLoanArrearState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Total Loan Arrear",
+                            "Total Loan Arrears",
                             style: TextStyle(
                               fontSize: 23,
                               fontWeight: FontWeight.w500,
@@ -165,7 +165,7 @@ class _PushNotificationLoanLoanArrearState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Total Loan Arrear Pushed",
+                            "Total Loan Arrears Pushed",
                             style: TextStyle(
                               fontSize: 23,
                               fontWeight: FontWeight.w500,
@@ -196,7 +196,7 @@ class _PushNotificationLoanLoanArrearState
                         onClickPushNotification();
                       },
                       label: Text(
-                        "Push Notification Loan Arrear",
+                        "Push Notification Loan Arrears",
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       icon: Icon(

@@ -34,7 +34,7 @@ CREATE TABLE LocalUserInfo (
   userName TEXT
 )
 ''');
-// Create table for Loan Arrear
+// Create table for Loan Arrears
     await db.execute('''
     CREATE TABLE IF NOT EXISTS Test(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -81,7 +81,7 @@ CREATE TABLE LocalUserInfo (
     return db!.delete("LocalUserInfo");
   }
 
-  //?! Local User for Loan Arrear Offline
+  //?! Local User for Loan Arrears Offline
   checkTableCreation() async {
     final db = await instance.database;
     List<Map<String, dynamic>> tables =

@@ -98,7 +98,7 @@ class _LoanArrearScreensState extends State<LoanArrearScreens>
             centerTitle: true,
             context: context,
             title:
-                '${AppLocalizations.of(context)!.translate('loan_arrear') ?? 'Loan Arrear'}',
+                '${AppLocalizations.of(context)!.translate('loan_arrear') ?? 'Loan Arrears'}',
             leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);

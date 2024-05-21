@@ -26,7 +26,7 @@ class _ReportArrFollowUpDetailState extends State<ReportArrFollowUpDetail> {
       // backgroundColor: AppColors.logolightGreen,
       appBar: CustomAppBar(
         context: context,
-        title: 'Arrear Follow-Up Detail',
+        title: 'Arrears Follow-Up Detail',
         centerTitle: true,
         elevation: 0,
       ),

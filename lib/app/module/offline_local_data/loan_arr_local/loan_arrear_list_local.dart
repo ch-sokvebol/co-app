@@ -50,7 +50,7 @@ class _LoanArrearListLocalState extends State<LoanArrearListLocal> {
                 child: Text('get'))
           ],
           title:
-              '${AppLocalizations.of(context)!.translate('loan_arrear') ?? 'Loan Arrear'}'),
+              '${AppLocalizations.of(context)!.translate('loan_arrear') ?? 'Loan Arrears'}'),
       body: ListView.builder(
           shrinkWrap: true,
           itemCount: allArrListLocal.length,

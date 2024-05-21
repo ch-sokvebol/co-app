@@ -209,7 +209,7 @@ class _LoanFollowUpScreenState extends State<LoanFollowUpScreen> {
         return Scaffold(
           appBar: CustomAppBar(
             context: context,
-            title: "Loan Arrear Follow Up",
+            title: "Loan Arrears Follow Up",
             centerTitle: true,
           ),
           body: Obx(
