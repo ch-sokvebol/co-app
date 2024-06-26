@@ -783,7 +783,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MemoPolicyScreen()),
+                    MaterialPageRoute(builder: (context) => NewHomeScreen()),
                   );
                 },
                 child: SvgPicture.asset(
