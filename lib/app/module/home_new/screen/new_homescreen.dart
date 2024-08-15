@@ -11,6 +11,7 @@ import 'package:chokchey_finance/utils/storages/const.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -463,7 +464,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                 margin: EdgeInsets.only(left: 20, right: 20),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: logoDarkBlue,
+                                  color: Colors.grey,
                                 ),
                                 child: Center(
                                   child: DefaultTextStyle(
@@ -481,21 +482,9 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                           ),
                                         ),
                                         SizedBox(width: 5.0),
-                                        AnimatedTextKit(
-                                          animatedTexts: [
-                                            WavyAnimatedText(
-                                              '...',
-                                              textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 24.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
-                                          isRepeatingAnimation: true,
-                                          onTap: () {
-                                            print("Tap Event");
-                                          },
+                                        SpinKitThreeBounce(
+                                          color: Colors.white70,
+                                          size: 25,
                                         ),
                                       ],
                                     ),
