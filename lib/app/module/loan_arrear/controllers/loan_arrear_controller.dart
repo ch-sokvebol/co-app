@@ -614,6 +614,7 @@ class LoanArrearController extends GetxController {
     try {
       // final url = 'https://localhost:5001/api/LoanArrearCopy/summery_par';
       final url = baseURLInternal + "LoanArrearCopy/summery_par";
+      print(url);
       final header = {'Content-Type': 'application/json'};
       final body = json.encode({
         "BranchCode": "$branchCode",
@@ -621,10 +622,12 @@ class LoanArrearController extends GetxController {
         "OverDueDay": overdueDay,
         "BaseDate": "$baseDate"
       });
+      print('-----Request par arrears------------$body');
       final res = await http.post(Uri.parse(url), headers: header, body: body);
+      print(res.statusCode);
       if (res.statusCode == 200) {
         var resJson = json.decode(res.body);
-        // debugPrint('body Arrears: ${res.body}');
+        debugPrint('body Arrears: ${res.body}');
         parArrHomeModel.value = ParArrHomeModel.fromJson(resJson);
       }
       isLoadingParArrHome.value = false;

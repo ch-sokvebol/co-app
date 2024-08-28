@@ -123,7 +123,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
   final khmer = const AssetImage('assets/images/khmer.png');
   ExpandableController? _expandableController;
 
-  // _expandableController = ExpandableController();
 
   onListReport() {
     Navigator.push(
@@ -279,43 +278,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   color: Colors.white,
                   child: Column(
                     children: <Widget>[
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (context) => NewHomeScreen()),
-                      //     );
-                      //   },
-                      //   child: Text("Testing"),
-                      // ),
-                      //============>
-                      // CustomListTile(
-                      //     Icons.notification_add,
-                      //     "Notification Loan Arrears",
-                      //     () => {onPushNotificationLoanArrear()},
-                      //     null),
-                      // CustomListTile(
-                      //     Icons.monetization_on,
-                      //     AppLocalizations.of(context)!
-                      //             .translate('approval_list') ??
-                      //         'Approval List',
-                      //     () => {onListLoanApproval()},
-                      //     null),
-                      // CustomListTile(
-                      //     Icons.face,
-                      //     AppLocalizations.of(context)!
-                      //             .translate('customer_list') ??
-                      //         'Customer List',
-                      //     () => {onListCustomerRegistration()},
-                      //     null),
-                      // CustomListTile(
-                      //     Icons.payment,
-                      //     AppLocalizations.of(context)!
-                      //             .translate('loan_register_list') ??
-                      //         'Loan Register List',
-                      //     () => {onListLoanRegistration()},
-                      //     null),
                       ExpandablePanel(
                         controller: _expandableController,
                         collapsed: Stack(
@@ -547,18 +509,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           thickness: 1,
                         ),
                       ),
-                      // CustomListTile(
-                      //     Icons.lock,
-                      //     AppLocalizations.of(context)!.translate('log_out') ??
-                      //         'Log Out',
-                      //     () => {(onLogOut())},
-                      //     null),
-                      // Padding(padding: EdgeInsets.only(top: 10)),
-                      // ListTile(
-                      //   title: Text("$versionString" + '$version'),
-                      //   onTap: () {},
-                      // ),
-                      // Spacer(),
                     ],
                   ),
                 ),

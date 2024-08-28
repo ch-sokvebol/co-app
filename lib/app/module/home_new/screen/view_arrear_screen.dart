@@ -20,7 +20,7 @@ class ViewArrearScreen extends StatefulWidget {
 class _ViewArrearScreenState extends State<ViewArrearScreen> {
   @override
   void initState() {
-    // onCheckPar();
+    onCheckPar();
     super.initState();
   }
 

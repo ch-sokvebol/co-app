@@ -96,7 +96,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
 
   @override
   void initState() {
-    onCheckPar();
+    onRefreshData();
     sqliteHelper = SqliteHelper();
     onNavigateDetail();
     onParArrear();
@@ -110,7 +110,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
     loadOfflineUserInfo();
     getNotificationLock();
 
-    //onLoanArrear();
+    // onLoanArrear();
     controllerLog.onConnection();
     super.initState();
     FirebaseMessaging.instance.getNotificationSettings();
@@ -284,33 +284,34 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
     var date = DateFormat("yyyyMMdd").format(
       DateTime(currentDate.year, currentDate.month, currentDate.day - 1),
     );
-    print("Base Date : ${date}");
+    print("Base Date : $date");
+
     var type = await storage.read(key: 'user_type');
     var branchCode = await storage.read(key: 'branch');
     var empCode = await storage.read(key: 'user_ucode');
+
+    String employeeCode = '';
+    String selectedBranchCode = '';
+
     if (type == "CO") {
-      con.getParArrHome(
-        baseDate: '$date',
-        employeeCode: '$empCode',
-        overdueDay: 0,
-        branchCode: '',
-      );
+      employeeCode = empCode ?? '';
     } else if (type == "BM" || type == "BTL") {
-      con.getParArrHome(
-        baseDate: '$date',
-        employeeCode: '',
-        overdueDay: 0,
-        branchCode: '$branchCode',
-      );
-    } else {
-      // For MNG
-      con.getParArrHome(
-        baseDate: '$date',
-        employeeCode: '',
-        overdueDay: 0,
-        branchCode: '',
-      );
+      selectedBranchCode = branchCode ?? '';
+    } else if (type == "MNG") {
+      employeeCode = '';
+      selectedBranchCode = '';
     }
+
+    con.getParArrHome(
+      baseDate: date,
+      employeeCode: employeeCode,
+      overdueDay: 0,
+      branchCode: selectedBranchCode,
+    );
+
+    setState(() {
+      isViewPar = true;
+    });
   }
 
   onParArrear() async {

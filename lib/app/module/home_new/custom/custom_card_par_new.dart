@@ -100,7 +100,6 @@ class _CustomCardParNewState extends State<CustomCardParNew> {
           ? CustomDefulfArrear()
           : Container(
               margin: EdgeInsets.all(8),
-              //  padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
               decoration: BoxDecoration(
                 border:
                     Border.all(width: 1, color: Colors.grey.withOpacity(0.2)),

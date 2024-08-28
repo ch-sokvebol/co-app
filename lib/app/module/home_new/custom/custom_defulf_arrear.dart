@@ -73,7 +73,6 @@ class CustomDefulfArrear extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(8),
-      // padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: Colors.grey.withOpacity(0.2)),
         color: Colors.white,
@@ -97,7 +96,6 @@ class CustomDefulfArrear extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                // onTap: () {},
                 child: Text(
                   'Arrears',
                   style: TextStyle(
