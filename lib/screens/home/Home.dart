@@ -862,7 +862,7 @@ class _HomeState extends State<Home> {
         context: context,
         // animType: AnimType.LEFTSLIDE,
         headerAnimationLoop: false,
-        dialogType: DialogType.INFO,
+        dialogType: DialogType.info,
         title: AppLocalizations.of(context)!.translate('information') ??
             'Information',
         desc: AppLocalizations.of(context)!.translate('do_you_want_to_exit') ??

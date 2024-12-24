@@ -43,7 +43,7 @@ dependencies:
   firebase_database: ^10.1.0
   firebase_messaging: ^14.6.4
   firebase_analytics: ^10.4.3
-  location: ^5.0.3
+#  location: ^5.0.3
   flutter:
     sdk: flutter
   flutter_chips_input: ^2.0.0

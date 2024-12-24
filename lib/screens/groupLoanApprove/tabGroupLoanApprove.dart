@@ -285,7 +285,7 @@ class _GroupLoanApproveDetailState extends State<GroupLoanApproveDetail> {
                                               context: context,
                                               // animType: AnimType.LEFTSLIDE,
                                               headerAnimationLoop: false,
-                                              dialogType: DialogType.INFO,
+                                              dialogType: DialogType.info,
                                               title: AppLocalizations.of(
                                                           context)!
                                                       .translate('reject') ??
@@ -327,7 +327,7 @@ class _GroupLoanApproveDetailState extends State<GroupLoanApproveDetail> {
                                               context: context,
                                               // animType: AnimType.LEFTSLIDE,
                                               headerAnimationLoop: false,
-                                              dialogType: DialogType.INFO,
+                                              dialogType: DialogType.info,
                                               title: AppLocalizations.of(
                                                           context)!
                                                       .translate('return') ??
@@ -369,7 +369,7 @@ class _GroupLoanApproveDetailState extends State<GroupLoanApproveDetail> {
                                               context: context,
                                               // animType: AnimType.LEFTSLIDE,
                                               headerAnimationLoop: false,
-                                              dialogType: DialogType.INFO,
+                                              dialogType: DialogType.info,
                                               title: AppLocalizations.of(
                                                           context)!
                                                       .translate('authrize') ??

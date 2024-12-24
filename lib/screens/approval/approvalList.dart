@@ -40,6 +40,7 @@ class _ApprovalListsState extends State<ApprovalLists>
   @override
   Widget build(BuildContext context) {
     if (isRefresh == true) {
+      fetchLoan();
       onLoading();
     }
     return Scaffold(
@@ -168,7 +169,6 @@ class _ApprovalListsState extends State<ApprovalLists>
     Navigator.of(context).push(
       new MaterialPageRoute<Null>(
           builder: (BuildContext context) {
-            //NatApproval
             return new TabBarMenu(loanApprovalApplicationNo);
           },
           fullscreenDialog: true),

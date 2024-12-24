@@ -509,7 +509,7 @@ class _EditLoanRegister extends State<EditLoanRegister> {
                         context: context,
                         // animType: AnimType.LEFTSLIDE,
                         headerAnimationLoop: false,
-                        dialogType: DialogType.SUCCES,
+                        dialogType: DialogType.success,
                         title: AppLocalizations.of(context)!
                                 .translate('information') ??
                             'Information',
@@ -1229,7 +1229,7 @@ class _EditLoanRegister extends State<EditLoanRegister> {
                         context: context,
                         // animType: AnimType.LEFTSLIDE,
                         headerAnimationLoop: false,
-                        dialogType: DialogType.SUCCES,
+                        dialogType: DialogType.success,
                         title: AppLocalizations.of(context)!
                                 .translate('information') ??
                             'Information',

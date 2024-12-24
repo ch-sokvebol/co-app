@@ -1186,7 +1186,7 @@ class _LoanRegister extends State {
                                     // animType: AnimType.LEFTSLIDE,
                                     headerAnimationLoop: false,
                                     // ignore: deprecated_member_use
-                                    dialogType: DialogType.SUCCES,
+                                    dialogType: DialogType.success,
                                     title: AppLocalizations.of(context)!
                                             .translate('information') ??
                                         'Information',

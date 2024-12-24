@@ -482,7 +482,7 @@ class _CustomerRegister extends State<EditCustomerRegister> {
                           context: context,
                           // animType: AnimType.LEFTSLIDE,
                           headerAnimationLoop: false,
-                          dialogType: DialogType.INFO,
+                          dialogType: DialogType.info,
                           title: AppLocalizations.of(context)!
                                   .translate('information') ??
                               'Information',
@@ -1341,7 +1341,7 @@ class _CustomerRegister extends State<EditCustomerRegister> {
                                 context: context,
                                 // animType: AnimType.LEFTSLIDE,
                                 headerAnimationLoop: false,
-                                dialogType: DialogType.INFO,
+                                dialogType: DialogType.info,
                                 title: AppLocalizations.of(context)!
                                         .translate('information') ??
                                     'Information',

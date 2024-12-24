@@ -37,7 +37,7 @@ class CustomCategory extends StatelessWidget {
             // ),
             Icon(
               icon,
-              size: 46,
+              size: 35,
               color: logoDarkBlue,
             ),
             SizedBox(
@@ -46,7 +46,7 @@ class CustomCategory extends StatelessWidget {
             Text(
               title!,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 color: logoDarkBlue,
                 fontWeight: FontWeight.w800,
               ),

@@ -11,14 +11,17 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 import '../../app/module/home_new/screen/new_homescreen.dart';
+import '../approval/approvalList.dart';
 import 'comment.dart';
 import 'approve.dart';
 
 class TabBarMenu extends StatefulWidget {
   final loanApprovalApplicationNo;
+
   TabBarMenu(
     this.loanApprovalApplicationNo,
   );
+
   @override
   _TabBarMenuState createState() => _TabBarMenuState();
 }
@@ -107,12 +110,12 @@ class _TabBarMenuState extends State<TabBarMenu> {
               logolightGreen, _scaffoldKeyApsara);
         } else {
           Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => NewHomeScreen()
-                  // Home(),
-                  ),
-              ModalRoute.withName('/'));
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => ApprovalLists(isRefresh: true),
+            ),
+            ModalRoute.withName('/'),
+          );
         }
       }
     } catch (error) {
@@ -153,9 +156,9 @@ class _TabBarMenuState extends State<TabBarMenu> {
       if (response.statusCode == 200) {
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (BuildContext context) => NewHomeScreen()
-                // Home(),
-                ),
+            MaterialPageRoute(
+              builder: (BuildContext context) => ApprovalLists(isRefresh: true),
+            ),
             ModalRoute.withName('/'));
       }
     } catch (error) {
@@ -192,9 +195,9 @@ class _TabBarMenuState extends State<TabBarMenu> {
       if (response.statusCode == 200) {
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (BuildContext context) => NewHomeScreen()
-                // Home(),
-                ),
+            MaterialPageRoute(
+              builder: (BuildContext context) => ApprovalLists(isRefresh: true),
+            ),
             ModalRoute.withName('/'));
       }
     } catch (error) {
@@ -251,8 +254,8 @@ class _TabBarMenuState extends State<TabBarMenu> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
-            //AppLocalizations.of(context)!.translate('loan_information') ??
-            'Loan Informationee'),
+            AppLocalizations.of(context)!.translate('loan_information') ??
+                'Loan Information'),
         backgroundColor: logolightGreen,
       ),
       body: Column(
@@ -453,6 +456,7 @@ class _TabBarMenuState extends State<TabBarMenu> {
                                   .translate('return') ??
                               'Return'),
                       Padding(padding: EdgeInsets.only(right: 5)),
+                      // vebol
                       Button(
                           widtdButton: 115.0,
                           heightButton: 50.0,

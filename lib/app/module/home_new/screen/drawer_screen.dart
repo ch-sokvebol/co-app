@@ -82,7 +82,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
         width: Responsive.isMobile(context) ? screenWidth : screenWidth / 2,
         context: context,
         headerAnimationLoop: false,
-        dialogType: DialogType.INFO,
+        dialogType: DialogType.info,
         transitionAnimationDuration: const Duration(milliseconds: 1000),
         title: AppLocalizations.of(context)!.translate('logout') ?? 'Logout',
         desc:

@@ -386,7 +386,7 @@ class _CardDetailLoanState extends State<CardDetailLoan> {
                                           context: context,
                                           // animType: AnimType.LEFTSLIDE,
                                           headerAnimationLoop: false,
-                                          dialogType: DialogType.INFO,
+                                          dialogType: DialogType.info,
                                           title: AppLocalizations.of(context)!
                                                   .translate('reject') ??
                                               'Reject',
@@ -425,7 +425,7 @@ class _CardDetailLoanState extends State<CardDetailLoan> {
                                           context: context,
                                           // animType: AnimType.LEFTSLIDE,
                                           headerAnimationLoop: false,
-                                          dialogType: DialogType.INFO,
+                                          dialogType: DialogType.info,
                                           title: AppLocalizations.of(context)!
                                                   .translate('return') ??
                                               'Return',
@@ -464,7 +464,7 @@ class _CardDetailLoanState extends State<CardDetailLoan> {
                                           context: context,
                                           // animType: AnimType.LEFTSLIDE,
                                           headerAnimationLoop: false,
-                                          dialogType: DialogType.INFO,
+                                          dialogType: DialogType.info,
                                           title: AppLocalizations.of(context)!
                                                   .translate('authrize') ??
                                               'Authrize',

@@ -258,7 +258,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
         context: context,
         width: Responsive.isMobile(context) ? screenWidth : screenWidth / 2,
         headerAnimationLoop: false,
-        dialogType: DialogType.INFO,
+        dialogType: DialogType.info,
         transitionAnimationDuration: const Duration(milliseconds: 1000),
         title: AppLocalizations.of(context)!.translate('information') ??
             'Information',
