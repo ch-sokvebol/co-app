@@ -456,7 +456,6 @@ class _TabBarMenuState extends State<TabBarMenu> {
                                   .translate('return') ??
                               'Return'),
                       Padding(padding: EdgeInsets.only(right: 5)),
-                      // vebol
                       Button(
                           widtdButton: 115.0,
                           heightButton: 50.0,
@@ -551,3 +550,193 @@ class _TabBarMenuState extends State<TabBarMenu> {
     );
   }
 }
+
+
+
+// -------- static ----------
+// import 'package:flutter/material.dart';
+// import 'package:chokchey_finance/components/cardDetial.dart';
+// import 'package:chokchey_finance/utils/storages/colors.dart';
+// import '../approval/approvalList.dart'; // Make sure this import is correct based on your project structure
+//
+// class TabBarMenu extends StatefulWidget {
+//   final String loanApprovalApplicationNo;
+//
+//   TabBarMenu(this.loanApprovalApplicationNo);
+//
+//   @override
+//   _TabBarMenuState createState() => _TabBarMenuState();
+// }
+//
+// class _TabBarMenuState extends State<TabBarMenu> {
+//   late List<Map<String, dynamic>> loanDetails;
+//   List<String> approvalStatus = ["Approved by John", "Pending from Manager"];
+//   List<String> comments = ["Need to revise the payment schedule.", "Looks good to proceed."];
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     loanDetails = [
+//       {
+//         'customerName': 'John Doe',
+//         'loanApprovalApplicationNo': widget.loanApprovalApplicationNo,
+//         'applyInterestRate': '5%',
+//         'applicationAmount': '10,000 USD',
+//         'productName': 'Personal Loan',
+//         'currencyCode': 'USD',
+//         'loanPeriodMonthlyCount': 24,
+//         'handleFee': '50 USD',
+//         'cbcFee': '15 USD',
+//         'unUseFee': 'None',
+//         'loanHopeDate': '2023-01-01',
+//         'loanExpiryDate': '2025-01-01',
+//         'interestExemptionPeriod': 'None',
+//         'branchName': 'Branch X',
+//         'firstInterestPaymentDate': '2023-02-01',
+//       },
+//     ];
+//   }
+//
+//   void confirmAction(String actionType) {
+//     showDialog(
+//       context: context,
+//       barrierDismissible: false, // user must tap button!
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           title: Text('Confirm $actionType'),
+//           content: SingleChildScrollView(
+//             child: ListBody(
+//               children: <Widget>[
+//                 Text('Are you sure you want to $actionType this application?'),
+//               ],
+//             ),
+//           ),
+//           actions: <Widget>[
+//             TextButton(
+//               child: Text('Cancel'),
+//               onPressed: () {
+//                 Navigator.of(context).pop(); // Dismiss the dialog but stay on current page
+//               },
+//             ),
+//             TextButton(
+//               child: Text('Confirm'),
+//               onPressed: () {
+//                 Navigator.of(context).pop(); // Dismiss the dialog
+//                 navigateBack(); // Perform navigation after confirmation
+//               },
+//             ),
+//           ],
+//         );
+//       },
+//     );
+//   }
+//
+//   void navigateBack() {
+//     Navigator.pushAndRemoveUntil(
+//       context,
+//       MaterialPageRoute(
+//         builder: (BuildContext context) => ApprovalLists(isRefresh: true),
+//       ),
+//       ModalRoute.withName('/'),
+//     );
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         iconTheme: const IconThemeData(color: Colors.white),
+//         title: const Text('Loan Information'),
+//         backgroundColor: logolightGreen,
+//       ),
+//       body: DefaultTabController(
+//         length: 3,
+//         child: Column(
+//           children: <Widget>[
+//             Container(
+//               color: logolightGreen,
+//               // constraints: BoxConstraints.expand(height: 50),
+//               child: TabBar(
+//                 indicatorColor: Colors.white,
+//                 tabs: [
+//                   Tab(text: "Detail", icon: Icon(Icons.details)),
+//                   Tab(text: "Approved", icon: Icon(Icons.book)),
+//                   Tab(text: "Comments", icon: Icon(Icons.comment)),
+//                 ],
+//               ),
+//             ),
+//             Expanded(
+//               child: TabBarView(
+//                 children: [
+//                   ListView.builder(
+//                     itemCount: loanDetails.length,
+//                     itemBuilder: (context, index) {
+//                       var detail = loanDetails[index];
+//                       return CardDetail(
+//                         images: AssetImage('assets/images/request.png'),
+//                         customerName: detail['customerName'],
+//                         applicationAmount: detail['applicationAmount'],
+//                         productName: detail['productName'],
+//                         currencyCode: detail['currencyCode'],
+//                         loanPeriodMonthlyCount: detail['loanPeriodMonthlyCount'],
+//                         handleFee: detail['handleFee'],
+//                         cbcFee: detail['cbcFee'],
+//                         unUseFee: detail['unUseFee'],
+//                         loanHopeDate: detail['loanHopeDate'],
+//                         loanExpiryDate: detail['loanExpiryDate'],
+//                         interestExemptionPeriod: detail['interestExemptionPeriod'],
+//                         branchName: detail['branchName'],
+//                         firstInterestPaymentDate: detail['firstInterestPaymentDate'],
+//                       );
+//                     },
+//                   ),
+//                   ListView.builder(
+//                     itemCount: approvalStatus.length,
+//                     itemBuilder: (context, index) {
+//                       return ListTile(
+//                         title: Text(approvalStatus[index]),
+//                         leading: Icon(Icons.check_circle_outline),
+//                       );
+//                     },
+//                   ),
+//                   ListView.builder(
+//                     itemCount: comments.length,
+//                     itemBuilder: (context, index) {
+//                       return ListTile(
+//                         title: Text(comments[index]),
+//                         leading: Icon(Icons.comment),
+//                       );
+//                     },
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//       bottomNavigationBar: BottomAppBar(
+//         color: Colors.white,
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//           children: <Widget>[
+//             TextButton(
+//               child: Text('Reject', style: TextStyle(color: Colors.red)),
+//               onPressed: () => confirmAction("reject"),
+//             ),
+//             TextButton(
+//               child: Text('Return', style: TextStyle(color: Colors.orange)),
+//               onPressed: () => confirmAction("return"),
+//             ),
+//             TextButton(
+//               child: Text('Approve', style: TextStyle(color: Colors.green)),
+//               onPressed: () => confirmAction("approve"),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+//
+

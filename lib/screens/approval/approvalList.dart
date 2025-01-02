@@ -10,11 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
+import '../../app/module/home_new/screen/new_homescreen.dart';
+
 // ignore: must_be_immutable
 class ApprovalLists extends StatefulWidget {
   static const routeName = '/ApprovalLists';
   bool? isRefresh = false;
+
   ApprovalLists({this.isRefresh});
+
   @override
   _ApprovalListsState createState() => new _ApprovalListsState();
 }
@@ -45,9 +49,15 @@ class _ApprovalListsState extends State<ApprovalLists>
     }
     return Scaffold(
       key: scaffoldKey,
-      appBar: new AppBar(
+      appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        leading: _isSearching ? const BackButton() : null,
+        leading: BackButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => NewHomeScreen()),
+            );
+          },
+        ),
         title: _isSearching ? _buildSearchField() : _buildTitle(context),
         actions: _buildActions(),
         backgroundColor: logolightGreen,
@@ -284,3 +294,217 @@ class _ApprovalListsState extends State<ApprovalLists>
     );
   }
 }
+
+//
+// import 'package:flutter/material.dart';
+// import 'package:chokchey_finance/utils/storages/colors.dart';
+// import '../../app/module/home_new/screen/new_homescreen.dart';
+// import '../detail/index.dart';
+//
+// // ignore: must_be_immutable
+// class ApprovalLists extends StatefulWidget {
+//   static const routeName = '/ApprovalLists';
+//   bool? isRefresh = false;
+//
+//   ApprovalLists({this.isRefresh});
+//
+//   @override
+//   _ApprovalListsState createState() => new _ApprovalListsState();
+// }
+//
+// class _ApprovalListsState extends State<ApprovalLists>
+//     with SingleTickerProviderStateMixin {
+//   TextEditingController? _searchQuery;
+//   bool _isSearching = false;
+//   String searchQuery = "Search query";
+//
+//   // Static data for demonstration
+//   List<Map<String, dynamic>> approvalList = [
+//     {
+//       'standardCodeDomainName2': 'Loan Request A',
+//       'loanApprovalApplicationNo': 'LAA-001',
+//       'authorizationRequestEmpNo': 'EMP123',
+//       'authorizationRequestEmpName': 'John Doe',
+//       'branchName': 'Branch X',
+//       'authorizationRequestDate': '2022-01-01',
+//       'authorizationRequestTime': '10:00 AM',
+//     },
+//     {
+//       'standardCodeDomainName2': 'Loan Request B',
+//       'loanApprovalApplicationNo': 'LAA-002',
+//       'authorizationRequestEmpNo': 'EMP456',
+//       'authorizationRequestEmpName': 'Jane Smith',
+//       'branchName': 'Branch Y',
+//       'authorizationRequestDate': '2022-01-02',
+//       'authorizationRequestTime': '11:00 AM',
+//     },
+//   ];
+//
+//   bool _isLoading = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         iconTheme: const IconThemeData(color: Colors.white),
+//         leading: BackButton(
+//           onPressed: () {
+//             Navigator.of(context).pushReplacement(
+//               MaterialPageRoute(builder: (context) => NewHomeScreen()),
+//             );
+//           },
+//         ),
+//         title: _isSearching ? _buildSearchField() : _buildTitle(context),
+//         actions: _buildActions(),
+//         backgroundColor: logolightGreen,
+//       ),
+//       body: _isLoading
+//           ? Center(child: CircularProgressIndicator())
+//           : ListView.builder(
+//         itemCount: approvalList.length,
+//         padding: const EdgeInsets.only(top: 20.0),
+//         itemBuilder: (context, index) {
+//           return Container(
+//             height: 100,
+//             margin: EdgeInsets.only(bottom: 5.0),
+//             child: Card(
+//               shape: RoundedRectangleBorder(
+//                 side: BorderSide(color: logolightGreen, width: 1),
+//                 borderRadius: BorderRadius.circular(10),
+//               ),
+//               child:InkWell(
+//                 splashColor: Colors.blue.withAlpha(30),
+//                 onTap: () {
+//                   onClickCard(approvalList[index], context);
+//                 },
+//                 child: Row(
+//                   children: <Widget>[
+//                     Padding(
+//                       padding: const EdgeInsets.all(8.0),
+//                       child: Icon(Icons.description, size: 50),
+//                     ),
+//                     Expanded(
+//                       child: Column(
+//                         crossAxisAlignment: CrossAxisAlignment.start,
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: <Widget>[
+//                           Text(
+//                             approvalList[index]['standardCodeDomainName2'],
+//                             style: TextStyle(
+//                               fontSize: 16,
+//                               fontWeight: FontWeight.bold,
+//                             ),
+//                           ),
+//                           Text(
+//                             'Application No: ${approvalList[index]['loanApprovalApplicationNo']}',
+//                             style: TextStyle(fontSize: 14),
+//                           ),
+//                           Text(
+//                             '${approvalList[index]['authorizationRequestEmpNo']}-${approvalList[index]['authorizationRequestEmpName']}[${approvalList[index]['branchName']}]',
+//                             style: TextStyle(fontSize: 14),
+//                           ),
+//                           Text(
+//                             '${approvalList[index]['authorizationRequestDate']} ${approvalList[index]['authorizationRequestTime']}',
+//                             style: TextStyle(fontSize: 14),
+//                           )
+//                         ],
+//                       ),
+//                     ),
+//                     Icon(Icons.keyboard_arrow_right),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           );
+//         },
+//       ),
+//     );
+//   }
+//
+//   // void onClickCard(Map<String, dynamic> value, BuildContext context) {
+//   //   // Handle card click event
+//   //   print("Clicked on: ${value['loanApprovalApplicationNo']}");
+//   // }
+//
+//   List<Widget> _buildActions() {
+//     if (_isSearching) {
+//       return <Widget>[
+//         IconButton(
+//           icon: const Icon(Icons.clear),
+//           onPressed: () {
+//             _clearSearchQuery();
+//           },
+//         ),
+//       ];
+//     }
+//     return <Widget>[
+//       IconButton(
+//         icon: const Icon(Icons.search),
+//         onPressed: _startSearch,
+//       ),
+//     ];
+//   }
+//
+//   Widget _buildSearchField() {
+//     return TextField(
+//       controller: _searchQuery,
+//       autofocus: true,
+//       decoration: const InputDecoration(
+//         hintText: 'Search...',
+//         border: InputBorder.none,
+//         hintStyle: TextStyle(color: Colors.white30),
+//       ),
+//       style: const TextStyle(color: Colors.white, fontSize: 16.0),
+//       onChanged: updateSearchQuery,
+//     );
+//   }
+//
+//   Widget _buildTitle(BuildContext context) {
+//     return InkWell(
+//       onTap: () {}, // Potentially open a drawer or perform another action
+//       child: Text(
+//         'Approval Lists',
+//         style: TextStyle(
+//           color: Colors.white,
+//           fontSize: 20,
+//           fontWeight: FontWeight.bold,
+//         ),
+//       ),
+//     );
+//   }
+//
+//   void updateSearchQuery(String newQuery) {
+//     setState(() {
+//       searchQuery = newQuery;
+//     });
+//   }
+//
+//   void _clearSearchQuery() {
+//     _searchQuery?.clear();
+//     updateSearchQuery("Search query");
+//   }
+//
+//   void _startSearch() {
+//     setState(() {
+//       _isSearching = true;
+//     });
+//   }
+//
+//   void onClickCard(Map<String, dynamic> loanDetails, BuildContext context) {
+//     final loanApprovalApplicationNo = loanDetails['loanApprovalApplicationNo'];
+//     Navigator.of(context).push(
+//       MaterialPageRoute(
+//         builder: (context) => TabBarMenu(loanApprovalApplicationNo),
+//       ),
+//     );
+//   }
+//
+//
+//   void _stopSearching() {
+//     _clearSearchQuery();
+//     setState(() {
+//       _isSearching = false;
+//     });
+//   }
+// }
+//
