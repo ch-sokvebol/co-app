@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:chokchey_finance/localizations/appLocalizations.dart';
 import 'package:chokchey_finance/providers/manageService.dart';
 import 'package:chokchey_finance/screens/detail/index.dart';
@@ -9,7 +8,7 @@ import 'package:chokchey_finance/utils/storages/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:page_transition/page_transition.dart';
 import '../../app/module/home_new/screen/new_homescreen.dart';
 
 // ignore: must_be_immutable
@@ -54,7 +53,11 @@ class _ApprovalListsState extends State<ApprovalLists>
         leading: BackButton(
           onPressed: () {
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => NewHomeScreen()),
+              PageTransition(
+                type: PageTransitionType.leftToRight,
+                child: NewHomeScreen(),
+              ),
+              // MaterialPageRoute(builder: (context) => NewHomeScreen()),
             );
           },
         ),

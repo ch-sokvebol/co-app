@@ -60,7 +60,7 @@ android {
         applicationId "com.ccf.coapp"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 54
+        versionCode 55
         versionName "2.2.5"
         multiDexEnabled true
         ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
